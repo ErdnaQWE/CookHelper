@@ -15,8 +15,5 @@ public class RecipeCreate extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_create);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        System.out.println("This is a test for a commit...");
-        System.out.println("Another change");
     }
 }
