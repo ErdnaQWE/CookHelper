@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.johicmes.cookhelper.RecipeCreate"
+    tools:showIn="@layout/activity_recipe_create">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Entrez le nom de la recette."
+            android:ems="10"
+            android:id="@+id/editText"
+            android:paddingLeft="16dp"
+            android:textSize="24sp"
+            android:paddingTop="24dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Entrez une catégorie."
+                android:ems="10"
+                android:id="@+id/editText2"
+                android:paddingLeft="16dp"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:textColor="@color/secondary_text_material_light" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Entrez le type de plats."
+                android:ems="10"
+                android:id="@+id/editText3"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textColor="@color/secondary_text_material_light"
+                android:paddingLeft="16dp" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editText5"
+            android:text="Ajoutez toute autre informations aléatoire."
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textSize="14sp"
+            android:textColor="@color/secondary_text_material_light"
+            android:paddingBottom="16dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Temps de préparation"
+                android:ems="10"
+                android:id="@+id/editText10"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:textSize="14sp"
+                android:textColor="@color/secondary_text_material_light" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Montant de portions"
+                android:ems="10"
+                android:id="@+id/editText9"
+                android:layout_weight="1"
+                android:paddingLeft="16dp"
+                android:textSize="14sp"
+                android:textColor="@color/secondary_text_material_light" />
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:text="Ingredients..."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:paddingLeft="16dp"
+                android:textSize="24sp"
+                android:textColor="@color/primary_text_material_light"
+                android:textAllCaps="false"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="OPT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView11"
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:paddingRight="18dp"
+                android:textSize="18sp"
+                android:textColor="@color/secondary_text_material_light" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="Insérez le nom de l'ingrédient."
+                    android:ems="10"
+                    android:id="@+id/editText6"
+                    android:layout_weight="5"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/secondary_text_material_light" />
+
+                <Switch
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch1"
+                    android:textAlignment="center"
+                    android:layout_weight="2.32"
+                    android:paddingRight="16dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="5">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="Quantité"
+                    android:ems="10"
+                    android:id="@+id/editText7"
+                    android:textAlignment="textStart"
+                    android:paddingLeft="16dp"
+                    android:textColor="@color/secondary_text_material_light"
+                    android:textSize="14sp"
+                    android:layout_weight="1" />
+
+                <Spinner
+                    android:layout_width="101dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/spinner" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_action_add"
+            android:id="@+id/imageView6" />
+
+        <TextView
+            android:text="Étapes..."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            android:textSize="24sp"
+            android:paddingLeft="16dp"
+            android:textColor="@color/primary_text_material_light" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editText8"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="Insérez les étapes de création."
+            android:textColor="@color/secondary_text_material_light" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_action_add"
+            android:id="@+id/imageView7" />
+
+        <Button
+            android:text="Terminé"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonDone"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_gravity="right"
+            android:layout_marginRight="16dp"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

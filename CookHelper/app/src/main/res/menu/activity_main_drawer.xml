@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Type de recherche">
+        <menu>
+            <item
+                android:id="@+id/nav_Ingredients"
+                android:icon="@drawable/ic_action_basket"
+                android:title="Ingrédients" />
+            <item
+                android:id="@+id/nav_Categorie"
+                android:icon="@drawable/ic_action_restaurant"
+                android:title="Catégories" />
+            <item
+                android:id="@+id/nav_Type"
+                android:icon="@drawable/ic_action_globe"
+                android:title="Type de plat" />
+        </menu>
+    </item>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_aide"
+            android:icon="@drawable/ic_action_help"
+            android:title="Aide" />
+        <item
+            android:id="@+id/nav_Favoris"
+            android:icon="@drawable/ic_action_heart"
+            android:title="Favoris" />
+    </group>
+
+</menu>

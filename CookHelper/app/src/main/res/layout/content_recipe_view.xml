@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.johicmes.cookhelper.RecipeView"
+    tools:showIn="@layout/activity_recipe_view"
+    android:paddingTop="24dp">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Lorem Ipsum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textNom"
+            android:textSize="24sp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="@color/primary_text_material_light" />
+
+        <TextView
+            android:text="Catégorie | Type de plat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/texteCategorieEtType"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae enim eget mauris sagittis fermentum. Mauris tristique elit augue, quis dictum purus ullamcorper eu. Praesent ultricies a nibh nec volutpat. Suspendisse potenti. In nulla felis, pulvinar eget feugiat id, mattis non purus. Vivamus pellentesque lacus purus, a luctus nulla condimentum."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
+            android:paddingBottom="16dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Ingrédients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/MotIngredients"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textColor="@color/primary_text_material_light"
+                android:paddingLeft="16dp" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="Potato"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView4"
+                        android:layout_weight="10.01"
+                        android:layout_gravity="center"
+                        android:paddingLeft="30dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/primary_text_material_light" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:text="Étapes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView7"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textColor="@color/primary_text_material_light"
+                android:paddingLeft="16dp" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="1."
+                        android:layout_width="54dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView9"
+                        android:paddingLeft="30dp"
+                        android:layout_gravity="center"
+                        android:textSize="18sp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:text="Eat Potato"
+                        android:layout_width="276dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView8"
+                        android:layout_gravity="center"
+                        android:textSize="18sp"
+                        android:textColor="@color/primary_text_material_light"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_help"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.johicmes.cookhelper.Help">
+
+    <TextView
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut purus tortor. Sed id lectus luctus, imperdiet mauris at, accumsan diam. Donec sem massa, fringilla at varius quis, gravida id sem. Sed volutpat vehicula turpis, vitae auctor odio luctus in. Suspendisse bibendum, sapien sed porta volutpat, sem mauris tempus mauris, pretium tristique arcu sem at elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse in iaculis ex. Proin quis nisl consequat, imperdiet est ac, interdum ligula. Praesent laoreet lorem ligula, vel finibus urna maximus nec. Pellentesque sollicitudin turpis ac diam efficitur efficitur. Vestibulum vel nulla felis. Morbi a nulla eget odio consectetur mollis. Curabitur tempus, justo sed bibendum ultricies, neque velit convallis ex, et efficitur orci neque eget nisl. Morbi efficitur elit quis urna vulputate, nec tristique libero laoreet.  Praesent sagittis risus et nisi gravida, ut lacinia turpis mattis. In tristique ligula tortor, vitae scelerisque dolor dapibus ac. Ut cursus, ligula quis lobortis congue, tellus tortor rhoncus metus, vel cursus purus arcu et ante. Sed eu finibus lacus. Fusce scelerisque lectus sem, vitae mollis arcu ultricies nec. Sed a maximus mauris. Duis tristique dolor quis est rutrum porttitor. Mauris non enim pellentesque, elementum lorem lacinia, efficitur mauris. Nunc condimentum rhoncus iaculis. Integer sagittis mi id enim facilisis, at efficitur ante tincidunt. Praesent in justo porttitor, placerat risus nec, accumsan arcu. Cras ullamcorper vestibulum ligula, sodales dictum lacus lobortis ut. Pellentesque vehicula, nisi ac lacinia viverra, lacus sapien pretium lacus, a egestas arcu nulla ac tortor. Duis id dolor bibendum, aliquam lectus in, lobortis dui. Suspendisse diam massa, lobortis id ante ut, dictum gravida mi.  Quisque iaculis metus a nunc mollis suscipit. Cras id finibus purus. Sed vitae urna a erat scelerisque tempor commodo sed sem. Donec id urna ipsum. Phasellus molestie, lectus vitae fermentum mattis, ligula ex congue dolor, non sodales neque ipsum a libero. Donec porta nunc non leo egestas, blandit efficitur arcu porttitor. Pellentesque feugiat nibh vitae tortor dignissim congue."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
