@@ -20,16 +20,16 @@ public class Ingredient {
 
     public float convertirVersLitres()//ca dit String mais je crois que ca devrais retourner un type float
     {
-        return null;
+        return 0.0f;
     }
 
     public float convertinVersOnces()
     {
-        return null;
+        return 0.0f;
     }
     public float convertinVersLivres()
     {
-        return null;
+        return 0.0f;
     }
     public void afficher()//ca fait quoi afficher?
     {
