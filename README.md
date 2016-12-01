@@ -3,7 +3,7 @@ Happy Prof, happy life.
 
 # Listes de tâches
 
-1. Faire le squelette des classes et des fonctions
+1. Faire le squelette des classes et des fonctions.   Done
 2. Faire le app
 
 # Dave
