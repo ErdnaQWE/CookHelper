@@ -41,4 +41,15 @@ public class Recette {
     {
 
     }
+
+    //getters
+    public int getImage()
+    {
+        return image;
+    }
+
+    public String getNom()
+    {
+        return nom;
+    }
 }
