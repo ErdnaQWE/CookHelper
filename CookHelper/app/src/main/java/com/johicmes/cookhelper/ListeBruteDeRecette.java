@@ -7,9 +7,8 @@ public class ListeBruteDeRecette {
     private String fichierALire;
 
     //associations
-    Recette recette;//je ne vois pas la pertinence de cette association
     ListeDeRecette listeDeRecette;
-    VignetteDeRecherche[] vignetteDeRecherches;//on peut utiliser autre chose qu'un tableau ici
+    VignetteDeRecherche[] vignetteDeRecherches; //on peut utiliser autre chose qu'un tableau ici
 
     public ListeBruteDeRecette ()
     {
