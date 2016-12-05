@@ -18,18 +18,12 @@ public class Ingredient {
 
     }
 
-    public float convertirVersLitres()
-    {
-        return 0.0f;
-    }
+    public String[] convert(){
 
-    public float convertinVersOnces()
-    {
-        return 0.0f;
-    }
-    public float convertinVersLivres()
-    {
-        return 0.0f;
+        String[] newProperties = new String[2];
+
+        return newProperties;
+
     }
     public void afficher()//ca fait quoi afficher? -> On avait besoin de mettre sa pour les diagrammes de séquence, c'est pour afficher l'ingrédient dans l'activity, sa se peut que tu va pas l'utiliser though
     {
