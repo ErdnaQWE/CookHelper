@@ -10,7 +10,7 @@ public class VignetteDeRecherche {
     private String typeDePlat;
     private int image;
     //Ajoutés pour vignetteAdapter
-    private int numIngredient;
+    private int numIngredient;//nombre d'ingredients total
     private int resultat;//nombre d'ingrédients concordant à la recherche
 
     //associations
@@ -18,9 +18,14 @@ public class VignetteDeRecherche {
     ListeBruteDeRecette listeBruteDeRecette;
 
     //constructeur pour ListeBruteDeRecette
-    public VignetteDeRecherche(String id)
+    public VignetteDeRecherche(String nom, String categorie, String typeDePlat, int image, int numIngredient, int resultat)
     {
-        //on construit de la base de donné
+        this.nom = nom;
+        this.categorie = categorie;
+        this.typeDePlat = typeDePlat;
+        this.image = image;
+        this.numIngredient = numIngredient;
+        this.resultat = resultat;
     }
 
     public void afficher()//ca fait quoi afficher?

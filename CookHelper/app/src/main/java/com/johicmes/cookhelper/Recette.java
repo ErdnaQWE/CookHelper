@@ -12,7 +12,7 @@ public class Recette {
     private int portions;
     private boolean favoris;
     private int image;
-    //il faut quelquechose pour étapes
+    private String[] etapes;
 
     //associations
     Ingredient[] ingredients;
@@ -28,11 +28,19 @@ public class Recette {
         this.favoris = favoris;
     }
 
+    //constructeur avec tout les arguments
     public Recette (String nom, String categorie, String typeDePlat, int tempsDeCuisson, int portions, boolean favoris, int image)
     {
         constructeur(nom, categorie, typeDePlat, tempsDeCuisson, portions, favoris, image);
     }
 
+    //constructeur avec les éléments de vignette
+    public Recette(VignetteDeRecherche vignette, int tempsDeCuisson, int portions, boolean favoris)
+    {
+        constructeur(vignette.getNom(), vignette.getCategorie(), vignette.getTypeDePlat(), tempsDeCuisson, portions, favoris, vignette.getImage());
+    }
+
+    //constructeur avec les éléments par défaut
     public Recette ()
     {
         constructeur("nom", "categorie", "type de plat", 0, 0, false, 0);
@@ -43,9 +51,16 @@ public class Recette {
         // Probablement juste se rajouter au activity ou passer à travers le adapter ou quelque chose comme sa.
     }
 
+    //méthodes pour les array de Dion, si ca marche pas je peux toujours les mettre dans le constructeur.
+
     public void ajouterIngredient(Ingredient[] ingredients) //Cette méthode remplace le array d'Ingrédients
     {
         this.ingredients = ingredients;
+    }
+
+    public void ajouterEtapes(String[] etapes) //Cette méthode remplace les étapes
+    {
+        this.etapes = etapes;
     }
 
     //getters
