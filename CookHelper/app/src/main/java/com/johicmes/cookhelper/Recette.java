@@ -12,6 +12,7 @@ public class Recette {
     private int portions;
     private boolean favoris;
     private int image;
+    //il faut quelquechose pour étapes
 
     //associations
     Ingredient[] ingredients;
