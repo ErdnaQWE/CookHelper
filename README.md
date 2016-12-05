@@ -1,11 +1,6 @@
 # CookHelper
 Happy Prof, happy life.
 
-# Listes de tâches
-
-1. Faire le squelette des classes et des fonctions.   Done
-2. Faire le app
-
 # Dave
   - Adapter pour Recette
   - Adapter pour Vignette
@@ -21,4 +16,5 @@ Happy Prof, happy life.
 
 # Dion
   - Tout ce qui a rapport au search
-  - Bases de données
+  
+  - Bases de données (Je vais probablement changer un peu comment sa marche, j'ai trouvé des classes qui appliquent le concept de recherche, nos diagrammes ou le fonctionnement change pas though, y'aura juste moins d'instances)
