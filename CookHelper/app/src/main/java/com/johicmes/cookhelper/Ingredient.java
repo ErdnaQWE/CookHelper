@@ -5,14 +5,14 @@ package com.johicmes.cookhelper;
  */
 public class Ingredient {
     private String nom;
-    private int quantite;
-    private String uniteDeMesure; //C'est quoi type? -> Type de plat
+    private double quantite;
+    private String uniteDeMesure;
     private boolean optionnel;
 
     //associations
     Recette recette;
 
-    public Ingredient (String nom, int quantite,String uniteDeMesure, boolean optionnel)
+    public Ingredient (String nom, double quantite,String uniteDeMesure, boolean optionnel)
     {
         this.nom = nom;
         this.quantite=quantite;
@@ -20,15 +20,37 @@ public class Ingredient {
         this.uniteDeMesure=uniteDeMesure;
     }
 
-    public String[] convert(int quantite, String uniteDeMesure){
+    public void convert(Ingredient ingredient){
 
-        String[] newProperties = new String[2];
+        double quantite = ingredient.quantite;
+        String uniteDeMesure = ingredient.uniteDeMesure;
+        switch (uniteDeMesure){
+            case ("g"):
+                ingredient.uniteDeMesure= "lb";
+                ingredient.quantite= Math.round((quantite*0.00220462)*100.00)/100.00;
+                break;
+            case  ("lb") :
+                ingredient.uniteDeMesure= "g";
+                ingredient.quantite = Math.round((quantite*453.592)*100.00)/100.00;
 
-        return newProperties;
+                break;
+            case ("ml") :
+                ingredient.uniteDeMesure= "oz";
+                ingredient.quantite = Math.round((quantite*0.033814)*100.00)/100.00;
+
+                break;
+            case ("oz"):
+                ingredient.uniteDeMesure="tasse";
+                ingredient.quantite = Math.round((quantite*0.125)*100.00)/100.00;
+
+                break;
+            case ("tasse"):
+                ingredient.uniteDeMesure= "ml";
+                ingredient.quantite = Math.round((quantite*236.588)*100.00)/100.00;
+                break;
+            default: break;
+
+        }
+
 
     }
-    public void afficher()//ca fait quoi afficher? -> On avait besoin de mettre sa pour les diagrammes de séquence, c'est pour afficher l'ingrédient dans l'activity, sa se peut que tu va pas l'utiliser though
-    {
-
-    }
-}
