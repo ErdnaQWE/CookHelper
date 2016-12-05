@@ -39,7 +39,7 @@ public class Recette {
 
     public void ajouterIngredient() // me semble que ça c'est pour recipe builder -> Oui, mais faut tu construit les ingrédients et que tu les donne a recette, tu va avoir besoin de cette fonction
     {
-
+// SUP DAVE
     }
 
     //getters
