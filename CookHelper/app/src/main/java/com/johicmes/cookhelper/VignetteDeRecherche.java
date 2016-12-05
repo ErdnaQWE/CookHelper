@@ -29,7 +29,7 @@ public class VignetteDeRecherche {
     }
 
     ///////////
-    //getters//
+    //getters// <- PLZ don't do this
     ///////////
     public String getNom()
     {

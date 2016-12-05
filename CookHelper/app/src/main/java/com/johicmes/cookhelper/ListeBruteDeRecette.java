@@ -13,6 +13,7 @@ public class ListeBruteDeRecette {
     public ListeBruteDeRecette ()
     {
 
+
     }
 
     public VignetteDeRecherche construireVignette(String id)

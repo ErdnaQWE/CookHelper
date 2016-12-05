@@ -9,9 +9,9 @@ public class RecipeBuilder {
     private String typeDePlat;
 
     //associations
-    private Ingredient[] ingredients;//préférablement utiliser autre chose qu'un tableau
-    private Recette recette;//ca fait quoi cette association?
-    private ListeDeRecette listeDeRecette;//ca fait quoi cette association?
+    private Ingredient[] ingredients;// préférablement utiliser autre chose qu'un tableau -> Ouin
+    private Recette recette;//ca fait quoi cette association? -> Pour contenir le produit final pendant sa construction, si tu l'as pas besoin, then enleve la
+    private ListeDeRecette listeDeRecette;//ca fait quoi cette association? -> Je pouvais pas mettre des one-way dans USE, enlève-le
 
     public RecipeBuilder()
     {
@@ -25,6 +25,6 @@ public class RecipeBuilder {
 
     public Recette compilerRecette()
     {
-        return void;
+        return null;
     }
 }

@@ -6,11 +6,11 @@ package com.johicmes.cookhelper;
 public class Ingredient {
     private String nom;
     private int quantite;
-    private String type;//C'est quoi type?
+    private String type; //C'est quoi type? -> Type de plat
     private boolean optionnel;
 
     //associations
-    RecipeBuilder recipeBuilder;//je ne suis pas sûr pour cette association
+    RecipeBuilder recipeBuilder; //je ne suis pas sûr pour cette association -> Je pouvais pas mettre des one-way dans USE, enlève-le
     Recette recette;
 
     public Ingredient ()
@@ -18,7 +18,7 @@ public class Ingredient {
 
     }
 
-    public float convertirVersLitres()//ca dit String mais je crois que ca devrais retourner un type float
+    public float convertirVersLitres()
     {
         return 0.0f;
     }
@@ -31,7 +31,7 @@ public class Ingredient {
     {
         return 0.0f;
     }
-    public void afficher()//ca fait quoi afficher?
+    public void afficher()//ca fait quoi afficher? -> On avait besoin de mettre sa pour les diagrammes de séquence, c'est pour afficher l'ingrédient dans l'activity, sa se peut que tu va pas l'utiliser though
     {
 
     }
