@@ -6,19 +6,21 @@ package com.johicmes.cookhelper;
 public class Ingredient {
     private String nom;
     private int quantite;
-    private String type; //C'est quoi type? -> Type de plat
+    private String uniteDeMesure; //C'est quoi type? -> Type de plat
     private boolean optionnel;
 
     //associations
-    RecipeBuilder recipeBuilder; //je ne suis pas sûr pour cette association -> Je pouvais pas mettre des one-way dans USE, enlève-le
     Recette recette;
 
-    public Ingredient ()
+    public Ingredient (String nom, int quantite,String uniteDeMesure, boolean optionnel)
     {
-
+        this.nom = nom;
+        this.quantite=quantite;
+        this.optionnel=optionnel;
+        this.uniteDeMesure=uniteDeMesure;
     }
 
-    public String[] convert(){
+    public String[] convert(int quantite, String uniteDeMesure){
 
         String[] newProperties = new String[2];
 
