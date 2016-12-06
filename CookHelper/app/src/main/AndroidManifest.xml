@@ -26,7 +26,9 @@
         <activity
             android:name=".RecipeCreate"
             android:label="@string/title_activity_recipe_create"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".IngredientView" />
+        <activity android:name=".StepsView"></activity>
     </application>
 
 </manifest>
