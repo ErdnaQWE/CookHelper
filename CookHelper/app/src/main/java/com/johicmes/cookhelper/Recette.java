@@ -13,12 +13,13 @@ public class Recette {
     private boolean favoris;
     private int image;
     private String[] etapes;
+    private String description;
 
     //associations
     Ingredient[] ingredients;
     ListeBruteDeRecette listeBruteDeRecette;
 
-    private void constructeur (String nom, String categorie, String typeDePlat, int tempsDeCuisson, int portions, boolean favoris, int image)
+    private void constructeur (String nom, String categorie, String typeDePlat, int tempsDeCuisson, int portions, boolean favoris, int image, String description)
     {
         this.nom = nom;
         this.categorie = categorie;
@@ -26,24 +27,25 @@ public class Recette {
         this.image = image;
         this.portions = portions;
         this.favoris = favoris;
+        this.description = description;
     }
 
     //constructeur avec tout les arguments
-    public Recette (String nom, String categorie, String typeDePlat, int tempsDeCuisson, int portions, boolean favoris, int image)
+    public Recette (String nom, String categorie, String typeDePlat, int tempsDeCuisson, int portions, boolean favoris, int image, String description)
     {
-        constructeur(nom, categorie, typeDePlat, tempsDeCuisson, portions, favoris, image);
+        constructeur(nom, categorie, typeDePlat, tempsDeCuisson, portions, favoris, image, description);
     }
 
     //constructeur avec les éléments de vignette
     public Recette(VignetteDeRecherche vignette, int tempsDeCuisson, int portions, boolean favoris)
     {
-        constructeur(vignette.getNom(), vignette.getCategorie(), vignette.getTypeDePlat(), tempsDeCuisson, portions, favoris, vignette.getImage());
+        constructeur(vignette.getNom(), vignette.getCategorie(), vignette.getTypeDePlat(), tempsDeCuisson, portions, favoris, vignette.getImage(), description); //Broken!
     }
 
     //constructeur avec les éléments par défaut
     public Recette ()
     {
-        constructeur("nom", "categorie", "type de plat", 0, 0, false, 0);
+        constructeur("nom", "categorie", "type de plat", 0, 0, false, 0, "Lorem Ipsum");
     }
 
     public void afficher()//ca fait quoi afficher? -> On avait besoin de mettre sa pour les diagrammes de séquence, c'est pour afficher la recette dans l'activity, sa se peut que tu va pas l'utiliser though
@@ -82,6 +84,10 @@ public class Recette {
     public String getTypeDePlat ()
     {
         return typeDePlat;
+    }
+
+    public String getDescription () {
+        return description;
     }
 
     public Ingredient[] getIngredients()
