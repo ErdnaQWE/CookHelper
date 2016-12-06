@@ -26,7 +26,7 @@
                 android:inputType="textPersonName"
                 android:text="Insérez le nom de l'ingrédient."
                 android:ems="10"
-                android:id="@+id/editText6"
+                android:id="@+id/nomIngredient"
                 android:layout_weight="5"
                 android:paddingRight="16dp"
                 android:paddingLeft="16dp"
@@ -36,7 +36,7 @@
             <Switch
                 android:layout_width="34dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/switch1"
+                android:id="@+id/switchOptionel"
                 android:textAlignment="center"
                 android:layout_weight="2.32"
                 android:paddingRight="16dp" />
@@ -55,7 +55,7 @@
                 android:inputType="textPersonName"
                 android:text="Quantité"
                 android:ems="10"
-                android:id="@+id/editText7"
+                android:id="@+id/Quantite"
                 android:textAlignment="textStart"
                 android:paddingLeft="16dp"
                 android:textColor="@color/secondary_text_material_light"
@@ -65,7 +65,7 @@
             <Spinner
                 android:layout_width="101dp"
                 android:layout_height="match_parent"
-                android:id="@+id/spinner" />
+                android:id="@+id/spinnerUniteDeMesure" />
 
         </LinearLayout>
 

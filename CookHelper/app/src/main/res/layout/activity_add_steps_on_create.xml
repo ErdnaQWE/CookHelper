@@ -15,10 +15,12 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/editText8"
+        android:id="@+id/step[i]"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:text="Insérez les étapes de création."
-        android:textColor="@color/secondary_text_material_light" />
+        android:textColor="@color/secondary_text_material_light"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

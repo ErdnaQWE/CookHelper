@@ -21,7 +21,7 @@
             android:inputType="textPersonName"
             android:text="Entrez le nom de la recette."
             android:ems="10"
-            android:id="@+id/editText"
+            android:id="@+id/nomderecette"
             android:paddingLeft="16dp"
             android:textSize="24sp"
             android:paddingTop="24dp" />
@@ -37,7 +37,7 @@
                 android:inputType="textPersonName"
                 android:text="Entrez une catégorie."
                 android:ems="10"
-                android:id="@+id/editText2"
+                android:id="@+id/categorie"
                 android:paddingLeft="16dp"
                 android:textSize="14sp"
                 android:layout_weight="1"
@@ -49,7 +49,7 @@
                 android:inputType="textPersonName"
                 android:text="Entrez le type de plats."
                 android:ems="10"
-                android:id="@+id/editText3"
+                android:id="@+id/typedePlat"
                 android:layout_weight="1"
                 android:textSize="14sp"
                 android:textColor="@color/secondary_text_material_light"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:ems="10"
-            android:id="@+id/editText5"
+            android:id="@+id/infoAdd"
             android:text="Ajoutez toute autre informations aléatoire."
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
@@ -80,7 +80,7 @@
                 android:inputType="textPersonName"
                 android:text="Temps de préparation"
                 android:ems="10"
-                android:id="@+id/editText10"
+                android:id="@+id/tempsPrep"
                 android:layout_weight="1"
                 android:paddingLeft="16dp"
                 android:textSize="14sp"
@@ -93,7 +93,7 @@
                 android:inputType="textPersonName"
                 android:text="Montant de portions"
                 android:ems="10"
-                android:id="@+id/editText9"
+                android:id="@+id/portions"
                 android:layout_weight="1"
                 android:paddingLeft="16dp"
                 android:textSize="14sp"
@@ -172,6 +172,12 @@
             android:layout_gravity="right"
             android:layout_marginRight="16dp"
             android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recetteId"
+            android:textColor="@android:color/transparent" />
 
     </LinearLayout>
 
