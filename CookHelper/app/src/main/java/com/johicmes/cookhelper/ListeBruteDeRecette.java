@@ -42,6 +42,18 @@ public class ListeBruteDeRecette {
             this.modifier = modifier;
         }
 
+        public boolean matches(String input) {
+
+            for (int i = 0; i < values.length; i++) {
+                if (values[i].equals(input)) {
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
+
     }
 
 
@@ -50,7 +62,7 @@ public class ListeBruteDeRecette {
         this.context = context;
     }
 
-    public VignetteDeRecherche construireVignette(String id)
+    public VignetteDeRecherche construireVignette(int id)
     {
         return null;
     }
@@ -76,6 +88,7 @@ public class ListeBruteDeRecette {
     public VignetteDeRecherche[] rechercheBooleenne(String input) {
 
         SearchEntry[] entries = separerTermes(input);
+        LinkedList<VignetteDeRecherche> resultat = new LinkedList<VignetteDeRecherche>();
 
         try {
             FileInputStream fileIn = context.openFileInput(FICHIER_A_LIRE);
@@ -85,7 +98,7 @@ public class ListeBruteDeRecette {
 
 
             String workingLine = reader.readLine();
-            String workingIngredient = reader.get
+            String[] workingIngredient;
             int workingId = -2;
             int currentPertinence = 0;
 
@@ -99,6 +112,26 @@ public class ListeBruteDeRecette {
                         reader.readLine();
                     }
 
+                    currentPertinence = 0;
+
+                    while (true) {
+                        workingLine = reader.readLine();
+
+                        if (workingLine.charAt(1) != '%') {
+
+                        }
+                        workingIngredient = workingLine.split(" | ");
+
+                        for (int ii = 0; ii < entries.length; ii++) {
+                            if (entries[ii].matches(workingIngredient[0].toLowerCase())) {
+                                currentPertinence += 1;
+                            }
+                        }
+                    }
+
+                    if (currentPertinence > 0) { // On construit la vignette
+                        System.out.println("Test");
+                    }
 
                 }
 

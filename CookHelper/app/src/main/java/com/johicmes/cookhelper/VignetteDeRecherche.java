@@ -74,6 +74,6 @@ public class VignetteDeRecherche {
 
     public String getFraction()
     {
-        return resultat +"/" + numIngredient;
+        return pertinence +"/" + numIngredient;
     }
 }

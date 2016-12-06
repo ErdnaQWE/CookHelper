@@ -55,6 +55,18 @@ public class Ingredient {
 
     }
 
+    public void setQuantite(double quantite) {
+        this.quantite = quantite;
+    }
+
+    public void setOptionnel(boolean optionnel) {
+        this.optionnel = optionnel;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     public String getNom() {
         return nom;
     }

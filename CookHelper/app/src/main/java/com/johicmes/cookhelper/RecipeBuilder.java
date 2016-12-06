@@ -1,6 +1,7 @@
 package com.johicmes.cookhelper;
 
 import android.widget.EditText;
+import android.widget.Switch;
 
 import java.util.LinkedList;
 
@@ -8,6 +9,7 @@ import java.util.LinkedList;
  * Created by Daviiiiid on 2016-12-01.
  */
 public class RecipeBuilder {
+    private int id;
     private String nom;
     private String categorie;
     private String typeDePlat;
@@ -20,11 +22,11 @@ public class RecipeBuilder {
 
     //associations
     Ingredient[] ingredients;
-
     private Recette recette;
 
     public RecipeBuilder()
     {
+        this.id=-1;
         this.nom=null;
         this.categorie=null;
         this.typeDePlat=null;
@@ -35,11 +37,15 @@ public class RecipeBuilder {
         this.portions=0;
         this.favoris=false;
         this.infoAdd=null;
+
+
+
     }
 
     //constructor d'une recette modifier.
     public RecipeBuilder(Recette recette)
     {
+        this.id=recette.getId();
         this.nom=recette.getNom();
         this.categorie=recette.getCategorie();
         this.typeDePlat=recette.getTypeDePlat();
@@ -49,12 +55,18 @@ public class RecipeBuilder {
         this.tempsDeCuisson=recette.getTempsDeCuisson();
         this.portions=recette.getPortions();
         this.favoris=recette.getFavori();
+        this.infoAdd = recette.getDescription();
+
+
 
     }
 
     public void ChargerRecette(Recette recette)
     {
         RecipeBuilder editRecette = new RecipeBuilder(recette);
+
+        EditText idText = (EditText) findViewById(R.id.recetteId);
+        idText.setText(editRecette.id);
 
         EditText nomText = (EditText) findViewById(R.id.nomDeRecette);
         nomText.setText(editRecette.nom);
@@ -71,13 +83,43 @@ public class RecipeBuilder {
         EditText portionsText=(EditText) findViewById(R.id.portions);
         portionsText.setText(editRecette.portions);
 
-        //quantite pas inclu nul part
-        //etapes still vide
-        //ingredients still vide
+        EditText descriptionText = (EditText) findViewById(R.id.description);
+        descriptionText.setText(editRecette.infoAdd);
+
+        //affiche les etapes
+        int sizeEtapes = etapes.length;
+        EditText[] etapesText = new EditText[sizeEtapes];
+        for (int i=0;i<sizeEtapes;i++) {
+
+            etapesText[i] = (EditText) findViewById(R.id.step[i]);
+            etapesText[i].setText(editRecette.etapes[i]);
+        }
+
+        //affiche les ingredients
+        int sizeIngredients = ingredients.length;
+        EditText[] ingredientsText = new EditText[sizeIngredients];
+        EditText[] quantiteText = new EditText[sizeIngredients];
+        Switch[] switchToggle = new Switch[sizeIngredients];
+
+        for (int i=0;i<sizeIngredients;i++){
+            //set ingredients
+            ingredientsText[i] = (EditText) findViewById(R.id.ingredient[i]);
+            ingredientsText[i].setText(editRecette.ingredients[i].getNom());
+
+            //set quantites
+            quantiteText[i] = (EditText) findViewById(R.id.quantite[i]);
+            quantiteText[i].setText(new Double(editRecette.ingredients[i].getQuantite()).toString());
+
+            //set optionnels
+            switchToggle[i] = (Switch) findViewById(R.id.switch[i]);
+            switchToggle[i].checked=true;
+        }
+
+
 
     }
 
-    public Recette compilerRecette()
+    public Recette compilerRecette(int nombreEtapes, int nombreIngredients)
     {
 
         String nom=null;
@@ -89,6 +131,10 @@ public class RecipeBuilder {
         int portions=0;
         boolean favoris=false;
         int image=0;
+        String infoAdd=null;
+
+        EditText idText=(EditText) findViewByID(R.id.recetteId);
+        id= Integer.parseInt(idText.getText().toString());
 
         EditText nomText = (EditText) findViewById(R.id.nomDeRecette);
         nom = nomText.getText().toString();
@@ -105,11 +151,45 @@ public class RecipeBuilder {
         EditText portionsText=(EditText) findViewById(R.id.portions);
         portions = Integer.parseInt(portionsText.getText().toString());
 
-        //quantite pas inclu nul part
-        //etapes still vide
-        //ingredients still vide
+        EditText descriptionText=(EditText) findViewById(R.id.description);
+        infoAdd = descriptionText.getText().toString();
 
-        Recette nouvelleRecette = new Recette(nom,categorie,typeDePlat,tempsDeCuisson,portions,favoris,image);
+        //etapes
+        //add etapes boutton doit incremeter nombreEtapes
+        EditText[] etapesText = new EditText[nombreEtapes];
+        for (int i=0;i<nombreEtapes;i++){
+
+            EditText etapesText[i] = (EditText) findViewById(R.id.step[i]);
+            etapes[i] = etapesText[i].getText().toString();
+
+
+        }
+
+        //ingredients
+        //add ingredients boutton doit incrementer nombreIngredients
+        EditText[] ingredientsText = new EditText[nombreIngredients];
+        EditText[] quantiteText = new EditText[nombreIngredients];
+        Switch[] switchToggle= new Switch[nombreIngredients];
+        for (int i=0;i<nombreIngredients;i++){
+
+            //set ingredients
+            ingredientsText[i] = (EditText) findViewById(R.id.ingredient[i]);
+            ingredients[i].setNom(ingredientsText[i].getText().toString());
+
+            //set quantites
+            quantiteText[i] = (EditText) findViewById(R.id.quantite[i]);
+            ingredients[i].setQuantite(Double.parseDouble(quantiteText[i].getText().toString()));
+
+
+            //set optionnels
+            switchToggle[i] = (Switch) findViewById(R.id.switch[i]);
+            ingredients[i].setOptionnel(switchToggle[i].isChecked());
+
+        }
+
+        //image not saved
+
+        Recette nouvelleRecette = new Recette(id,nom,categorie,typeDePlat,tempsDeCuisson,portions,favoris,image,infoAdd);
         nouvelleRecette.ajouterEtapes(etapes);
         nouvelleRecette.ajouterIngredient(ingredients);
 
