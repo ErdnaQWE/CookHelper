@@ -43,6 +43,16 @@
             android:paddingLeft="16dp"
             android:paddingBottom="16dp" />
 
+        <TextView
+            android:text="Cette recette prend x heures et sert y personne(s)."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/TextePortionEtTemps"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textStyle="normal|bold|italic"
+            android:textColor="@color/secondary_text_material_light" />
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
