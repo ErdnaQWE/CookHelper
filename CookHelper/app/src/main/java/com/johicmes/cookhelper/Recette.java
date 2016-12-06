@@ -108,4 +108,10 @@ public class Recette {
     {
         return etapes;
     }
+
+    //getters pour le adapter
+    public String getCategorieEtTypeDePlat()
+    {
+        return categorie + " | " + typeDePlat;
+    }
 }
