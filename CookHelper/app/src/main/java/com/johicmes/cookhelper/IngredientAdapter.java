@@ -16,7 +16,7 @@ public class IngredientAdapter extends ArrayAdapter<Ingredient> {
 
 public IngredientAdapter (Context context, List<Ingredient> ingredients)
         {
-        super(context,R.layout.cardview,ingredients);
+        super(context,R.layout.activity_ingredient_view,ingredients);
         }
 
 public View getView(int position, View convertView, ViewGroup parent)

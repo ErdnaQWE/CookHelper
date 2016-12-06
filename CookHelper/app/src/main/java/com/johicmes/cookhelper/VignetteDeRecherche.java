@@ -36,7 +36,7 @@ public class VignetteDeRecherche {
 
     public VignetteDeRecherche(int id, String nom, String categorie, String typeDePlat, int image, int numIngredient)
     {
-        construction(id,nom,categorie,typeDePlat,image,numIngredient,0);
+        construction(id,nom,categorie,typeDePlat,image,numIngredient,0);//j'ai mis 0 par défaut mais tu peux le changer
     }
 
     public void afficher()//ca fait quoi afficher?
