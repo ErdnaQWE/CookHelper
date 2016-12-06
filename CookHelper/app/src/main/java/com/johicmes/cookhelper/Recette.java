@@ -73,4 +73,39 @@ public class Recette {
     {
         return nom;
     }
+
+    public String getCategorie()
+    {
+        return categorie;
+    }
+
+    public String getTypeDePlat ()
+    {
+        return typeDePlat;
+    }
+
+    public Ingredient[] getIngredients()
+    {
+     return ingredients;
+    }
+
+    public int getTempsDeCuisson()
+    {
+        return tempsDeCuisson;
+    }
+
+    public int getPortions()
+    {
+        return portions;
+    }
+
+    public boolean getFavori()
+    {
+        return favoris;
+    }
+
+    public String[] getEtapes()
+    {
+        return etapes;
+    }
 }

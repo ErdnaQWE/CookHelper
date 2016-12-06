@@ -38,9 +38,6 @@ public class RecipeBuilder {
 
     }
 
-/* Comented out so that the rest of my shit workd in the meantime -Johic
-
-
     //constructor d'une recette modifier.
     public RecipeBuilder(Recette recette)
     {
@@ -52,7 +49,7 @@ public class RecipeBuilder {
         this.image=recette.getImage();
         this.tempsDeCuisson=recette.getTempsDeCuisson();
         this.portions=recette.getPortions();
-        this.favoris=recette.getFavoris();
+        this.favoris=recette.getFavori();
 
 
 
@@ -122,5 +119,4 @@ public class RecipeBuilder {
         return nouvelleRecette;
 
     }
-    */
 }
