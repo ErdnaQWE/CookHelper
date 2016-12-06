@@ -16,7 +16,7 @@ public class LeListnerQuiListenTout implements View.OnClickListener
         {
             case R.id.editText7://exemple de comment ca marche, met le id approprié ici
             {
-                //code ici
+                //code ici () genre this is what happens when you click on this...
                 break;
             }
         }

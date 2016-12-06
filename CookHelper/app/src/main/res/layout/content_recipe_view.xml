@@ -48,15 +48,34 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:text="Ingrédients"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/MotIngredients"
-                android:layout_weight="1"
-                android:textSize="20sp"
-                android:textColor="@color/primary_text_material_light"
-                android:paddingLeft="16dp" />
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:text="Ingrédients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/MotIngredients"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/primary_text_material_light"
+                    android:paddingLeft="16dp" />
+
+                <Button
+                    android:text="Unités"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ToggleUnites"
+                    style="@style/Widget.AppCompat.Button.Borderless" />
+
+                <Space
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
             <ListView
                 android:layout_width="match_parent"
@@ -80,6 +99,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/stepsView" />
+
+            <Button
+                android:text="Supprimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/deleteButton"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_gravity="right" />
 
 
         </LinearLayout>
