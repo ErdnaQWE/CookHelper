@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/step[i]"
+        android:id="@+id/step[i]"<!-- todo corriger ce id, ça marche pas comme ça, que veux tu faire au juste? -->
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:text="Insérez les étapes de création."
