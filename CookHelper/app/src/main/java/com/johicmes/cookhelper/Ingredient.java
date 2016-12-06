@@ -54,4 +54,21 @@ public class Ingredient {
 
 
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public double getQuantite() {
+        return quantite;
+    }
+
+    public String getUniteDeMesure() {
+        return uniteDeMesure;
+    }
+
+    public Boolean estOptionnel() {
+        return optionnel;
+    }
+
 }

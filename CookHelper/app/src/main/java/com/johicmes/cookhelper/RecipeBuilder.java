@@ -20,6 +20,7 @@ public class RecipeBuilder {
 
     //associations
     Ingredient[] ingredients;
+
     private Recette recette;
 
     public RecipeBuilder()
@@ -34,8 +35,6 @@ public class RecipeBuilder {
         this.portions=0;
         this.favoris=false;
         this.infoAdd=null;
-
-
     }
 
     //constructor d'une recette modifier.
@@ -50,8 +49,6 @@ public class RecipeBuilder {
         this.tempsDeCuisson=recette.getTempsDeCuisson();
         this.portions=recette.getPortions();
         this.favoris=recette.getFavori();
-
-
 
     }
 

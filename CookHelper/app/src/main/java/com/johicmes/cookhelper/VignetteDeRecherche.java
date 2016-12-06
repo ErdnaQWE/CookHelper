@@ -5,27 +5,29 @@ package com.johicmes.cookhelper;
  */
 public class VignetteDeRecherche {
 
+    private int id;
     private String nom;
     private String categorie;
     private String typeDePlat;
     private int image;
     //Ajoutés pour vignetteAdapter
     private int numIngredient;//nombre d'ingredients total
-    private int resultat;//nombre d'ingrédients concordant à la recherche
+    private int pertinence;//nombre d'ingrédients concordant à la recherche
 
     //associations
     ListeDeRecette listeDeRecette;
     ListeBruteDeRecette listeBruteDeRecette;
 
     //constructeur pour ListeBruteDeRecette
-    public VignetteDeRecherche(String nom, String categorie, String typeDePlat, int image, int numIngredient, int resultat)
+    public VignetteDeRecherche(int id, String nom, String categorie, String typeDePlat, int image, int numIngredient, int pertinence)
     {
+        this.id = id;
         this.nom = nom;
         this.categorie = categorie;
         this.typeDePlat = typeDePlat;
         this.image = image;
         this.numIngredient = numIngredient;
-        this.resultat = resultat;
+        this.pertinence = pertinence;
     }
 
     public void afficher()//ca fait quoi afficher?
@@ -34,6 +36,11 @@ public class VignetteDeRecherche {
     }
 
     //getters
+
+    public Integer getId() {
+        return id;
+    }
+
     public String getNom()
     {
         return nom;
