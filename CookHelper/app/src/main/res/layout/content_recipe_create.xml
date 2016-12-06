@@ -198,7 +198,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_action_add"
-            android:id="@+id/imageView6" />
+            android:id="@+id/imageView6"
+            android:clickable="true" />
 
         <TextView
             android:text="Étapes..."
@@ -208,10 +209,6 @@
             android:textSize="24sp"
             android:paddingLeft="16dp"
             android:textColor="@color/primary_text_material_light" />
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <EditText
             android:layout_width="match_parent"
@@ -224,11 +221,16 @@
             android:text="Insérez les étapes de création."
             android:textColor="@color/secondary_text_material_light" />
 
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_action_add"
-            android:id="@+id/imageView7" />
+            android:id="@+id/imageView7"
+            android:clickable="true" />
 
         <Button
             android:text="Terminé"

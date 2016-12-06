@@ -31,7 +31,11 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="@drawable/template"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:background="@drawable/template"
+            android:scaleType="centerCrop"
+            app:expandedTitleTextAppearance="@android:color/transparent"
+            app:collapsedTitleTextAppearance="@android:color/transparent">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

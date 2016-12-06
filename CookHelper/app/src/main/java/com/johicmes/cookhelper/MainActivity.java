@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RecipeCreate.class);
+                startActivity(intent);
+
                 Snackbar.make(view, "Should probably implement this eh!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -88,6 +91,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_Categorie){
 
         } else if (id == R.id.nav_aide) {
+            Intent intent = new Intent(this, Help.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_Favoris) {
 

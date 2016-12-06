@@ -9,5 +9,6 @@ public class Help extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
+        int y = 0; // Random useless variable.... Just Testing a push (Johic)
     }
 }

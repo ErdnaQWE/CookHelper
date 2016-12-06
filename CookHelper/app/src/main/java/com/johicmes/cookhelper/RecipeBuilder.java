@@ -37,6 +37,10 @@ public class RecipeBuilder {
 
 
     }
+
+/* Comented out so that the rest of my shit workd in the meantime -Johic
+
+
     //constructor d'une recette modifier.
     public RecipeBuilder(Recette recette)
     {
@@ -118,4 +122,5 @@ public class RecipeBuilder {
         return nouvelleRecette;
 
     }
+    */
 }
