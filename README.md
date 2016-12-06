@@ -1,6 +1,8 @@
 # CookHelper
 Happy Prof, happy life.
 
+Il manque l'insertion d'Ingrédient et des étapes, les étapes peuvent être insérés dynamiquement, les ingrédients aussi mais on peut aussi faire un adapter pour ingrédients. Dans content_recipe.xml il y a un text view pour la description, est ce que j'ajoute une description à Recette.java? il manque aussi un text view pour nombre de portions et temps de préparation, soit on ajoute ces view ou on les enlève de Recette.
+
 # Dave
   - Adapter pour Recette
   - Adapter pour Vignette
