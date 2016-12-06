@@ -28,10 +28,12 @@ public class RecetteAdapter extends ArrayAdapter<Recette> {
         //ImageView thumbnail = (ImageView) rowView.findViewById(R.id.thumbnail);//Il se peut que l'image soit mis dans RecetteActivity Dynamiquement tout comme les étapes
         TextView nomView = (TextView) rowView.findViewById(R.id.textNom);
         TextView categorietTypeDePlatView = (TextView) rowView.findViewById(R.id.textCategorieEtType);
+        TextView description = (TextView) rowView.findViewById(R.id.textView3);
 
         //thumbnail.setImageResource(getItem(position).getImage());
         nomView.setText(getItem(position).getNom());
         categorietTypeDePlatView.setText(getItem(position).getCategorieEtTypeDePlat());
+        description.setText(getItem(position).getDescription());
 
         return rowView;
     }
