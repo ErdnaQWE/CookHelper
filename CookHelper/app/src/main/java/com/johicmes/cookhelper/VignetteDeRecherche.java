@@ -19,7 +19,7 @@ public class VignetteDeRecherche {
     ListeBruteDeRecette listeBruteDeRecette;
 
     //constructeur pour ListeBruteDeRecette
-    public VignetteDeRecherche(int id, String nom, String categorie, String typeDePlat, int image, int numIngredient, int pertinence)
+    private void construction (int id, String nom, String categorie, String typeDePlat, int image, int numIngredient, int pertinence)
     {
         this.id = id;
         this.nom = nom;
@@ -28,6 +28,15 @@ public class VignetteDeRecherche {
         this.image = image;
         this.numIngredient = numIngredient;
         this.pertinence = pertinence;
+    }
+    public VignetteDeRecherche(int id, String nom, String categorie, String typeDePlat, int image, int numIngredient, int pertinence)
+    {
+        construction(id,nom,categorie,typeDePlat,image,numIngredient,pertinence);
+    }
+
+    public VignetteDeRecherche(int id, String nom, String categorie, String typeDePlat, int image, int numIngredient)
+    {
+        construction(id,nom,categorie,typeDePlat,image,numIngredient,0);//j'ai mis 0 par défaut mais tu peux le changer
     }
 
     public void afficher()//ca fait quoi afficher?

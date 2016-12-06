@@ -17,7 +17,7 @@ public class RecetteAdapter extends ArrayAdapter<Recette> {
 
     public RecetteAdapter (Context context, List<Recette> recettes)
     {
-        super(context,R.layout.cardview,recettes);
+        super(context,R.layout.content_recipe_view,recettes);
     }
 
     public View getView(int position, View convertView, ViewGroup parent)
