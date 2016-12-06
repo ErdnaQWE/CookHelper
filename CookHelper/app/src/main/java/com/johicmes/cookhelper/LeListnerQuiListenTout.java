@@ -1,3 +1,5 @@
+package com.johicmes.cookhelper;
+
 import android.content.DialogInterface;
 import android.view.View;
 
