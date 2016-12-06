@@ -41,9 +41,6 @@ public class RecipeBuilder {
         this.portions=0;
         this.favoris=false;
         this.infoAdd=null;
-
-
-
     }
 
     //constructor d'une recette modifier.
