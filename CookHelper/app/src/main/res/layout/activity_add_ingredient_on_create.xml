@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_ingredient_on_create"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.johicmes.cookhelper.addIngredientOnCreate">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Insérez le nom de l'ingrédient."
+                android:ems="10"
+                android:id="@+id/editText6"
+                android:layout_weight="5"
+                android:paddingRight="16dp"
+                android:paddingLeft="16dp"
+                android:textSize="18sp"
+                android:textColor="@color/secondary_text_material_light" />
+
+            <Switch
+                android:layout_width="34dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/switch1"
+                android:textAlignment="center"
+                android:layout_weight="2.32"
+                android:paddingRight="16dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Quantité"
+                android:ems="10"
+                android:id="@+id/editText7"
+                android:textAlignment="textStart"
+                android:paddingLeft="16dp"
+                android:textColor="@color/secondary_text_material_light"
+                android:textSize="14sp"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:layout_width="101dp"
+                android:layout_height="match_parent"
+                android:id="@+id/spinner" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

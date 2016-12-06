@@ -24,7 +24,7 @@ public class RecipeCreate extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(RecipeCreate.this, RecipeView.class);
                 startActivity(intent);
-
+                //and other rstuff come saver et laoder la recette
             }
         });
     }
