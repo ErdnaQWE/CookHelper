@@ -27,7 +27,7 @@
                 android:text="Potato"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView4"
+                android:id="@+id/Ingredient"
                 android:layout_weight="10.01"
                 android:layout_gravity="center"
                 android:paddingLeft="30dp"
@@ -39,9 +39,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.44"
-                android:id="@+id/bleh"
+                android:id="@+id/quantite"
                 android:layout_gravity="center"
                 android:clickable="true" />
+
+            <TextView
+                android:text="Opt"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/Optionel"
+                android:layout_gravity="center"
+                android:textColor="@color/colorAccent" />
 
         </LinearLayout>
 
