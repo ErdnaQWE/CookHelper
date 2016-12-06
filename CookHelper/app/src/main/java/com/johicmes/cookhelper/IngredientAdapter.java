@@ -14,25 +14,26 @@ import java.util.List;
  */
 public class IngredientAdapter extends ArrayAdapter<Ingredient> {
 
-public IngredientAdapter (Context context, List<Ingredient> ingredients)
-        {
-        super(context,R.layout.activity_ingredient_view,ingredients);
+        public IngredientAdapter(Context context, List<Ingredient> ingredients) {
+                super(context, R.layout.activity_ingredient_view, ingredients);
         }
 
-public View getView(int position, View convertView, ViewGroup parent)
-        {
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.cardview, parent, false);
+        public View getView(int position, View convertView, ViewGroup parent) {
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View rowView = inflater.inflate(R.layout.cardview, parent, false);
 
+                TextView nomView = (TextView) rowView.findViewById(R.id.Ingredient);
+                TextView quantitéView = (TextView) rowView.findViewById(R.id.quantite);
+                TextView optionnel = (TextView) rowView.findViewById(R.id.Optionel);
 
-        TextView nomView = (TextView) rowView.findViewById(R.id.textView4);
-        TextView quantitéView = (TextView) rowView.findViewById(R.id.bleh);
-        //TextView optionnel = (TextView) rowView.findViewById(R.id.textView3);
+                nomView.setText(getItem(position).getNom());
+                quantitéView.setText(getItem(position).getQuantite() + " " + getItem(position).getUniteDeMesure());//cast implicite en string
 
-        //thumbnail.setImageResource(getItem(position).getImage());
-        nomView.setText(getItem(position).getNom());
-        quantitéView.setText(getItem(position).getQuantite() + " " + getItem(position).getUniteDeMesure());//cast implicite en string
+                if (getItem(position).estOptionnel())
+                        optionnel.setText("opt");
+                else
+                        optionnel.setText("");//vide si obligatioire
 
-        return rowView;
+                return rowView;
         }
-
+}
