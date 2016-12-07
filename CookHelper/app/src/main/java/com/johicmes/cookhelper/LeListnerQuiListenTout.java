@@ -37,7 +37,10 @@ public class LeListnerQuiListenTout implements View.OnClickListener
             {
                 RecipeBuilder build = new RecipeBuilder();
             }
-
+            case R.id.search:
+            {
+                //faire le search
+            }
         }
     }
 }
