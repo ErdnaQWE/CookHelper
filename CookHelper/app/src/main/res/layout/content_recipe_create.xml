@@ -31,29 +31,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:layout_width="wrap_content"
+            <Spinner
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="Entrez une catégorie."
-                android:ems="10"
-                android:id="@+id/categorie"
-                android:paddingLeft="16dp"
-                android:textSize="14sp"
-                android:layout_weight="1"
-                android:textColor="@color/secondary_text_material_light" />
+                android:id="@+id/categorieSpinner"
+                android:layout_weight="1" />
 
-            <EditText
-                android:layout_width="wrap_content"
+            <Spinner
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="Entrez le type de plat."
-                android:ems="10"
-                android:id="@+id/typedePlat"
-                android:layout_weight="1"
-                android:textSize="14sp"
-                android:textColor="@color/secondary_text_material_light"
-                android:paddingLeft="16dp" />
+                android:id="@+id/TypeDePlatSpinner"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
         <EditText
