@@ -31,7 +31,8 @@
                 android:paddingRight="16dp"
                 android:paddingLeft="16dp"
                 android:textSize="18sp"
-                android:textColor="@color/secondary_text_material_light" />
+                android:textColor="@color/secondary_text_material_light"
+                android:selectAllOnFocus="true" />
 
             <Switch
                 android:layout_width="34dp"
@@ -60,7 +61,8 @@
                 android:paddingLeft="16dp"
                 android:textColor="@color/secondary_text_material_light"
                 android:textSize="14sp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:selectAllOnFocus="true" />
 
             <Spinner
                 android:layout_width="101dp"

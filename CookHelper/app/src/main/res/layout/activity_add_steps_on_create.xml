@@ -16,12 +16,12 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/etape"
-        android:text="Etape Goes Here" /><!-- todo corriger ce id, ça marche pas comme ça, que veux tu faire au juste? -->
+        android:text="Etape Goes Here"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:text="Insérez les étapes de création."
         android:textColor="@color/secondary_text_material_light"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:selectAllOnFocus="true" />
 
 </RelativeLayout>
