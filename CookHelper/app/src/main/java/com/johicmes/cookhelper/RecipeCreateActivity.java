@@ -132,4 +132,83 @@ public class RecipeCreateActivity extends AppCompatActivity {
         });
      */
 
+    public Recette compilerRecette(int nombreEtapes, int nombreIngredients)
+    {
+
+        String nom=null;
+        String categorie=null;
+        String typeDePlat=null;
+        int tempsDeCuisson=0;
+        String[] etapes=null;
+        Ingredient[] ingredients=null;
+        int portions=0;
+        boolean favoris=false;
+        int image=0;
+        String infoAdd=null;
+
+        EditText nomText = (EditText) v.findViewById(R.id.nomderecette);
+        nom = nomText.getText().toString();
+
+        /* Are now spinners... to be updated
+        EditText categorieText=(EditText) v.findViewById(R.id.categorie);
+        categorie = categorieText.getText().toString();
+
+        EditText typeDePlatText=(EditText) v.findViewById(R.id.typeDePlats);
+        typeDePlat = typeDePlatText.getText().toString();
+        */
+
+
+        EditText tempsDeCuissonText=(EditText) findViewById(R.id.tempsPrep);
+        tempsDeCuisson = Integer.parseInt(tempsDeCuissonText.getText().toString());
+
+        EditText portionsText=(EditText) findViewById(R.id.portions);
+        portions = Integer.parseInt(portionsText.getText().toString());
+
+        EditText descriptionText=(EditText) findViewById(R.id.infoAdd);
+        infoAdd = descriptionText.getText().toString();
+
+
+        /* needs to be changed pour prendre les parties de ouias
+        //etapes
+        //add etapes boutton doit incremeter nombreEtapes
+        EditText[] etapesText = new EditText[nombreEtapes];
+        for (int i=0;i<nombreEtapes;i++){
+
+            EditText etapesText[i] = (EditText) v.findViewById(R.id.);
+            etapes[i] = etapesText[i].getText().toString();
+
+
+        }
+       */
+        //ingredients
+        //add ingredients boutton doit incrementer nombreIngredients
+        EditText[] ingredientsText = new EditText[nombreIngredients];
+        EditText[] quantiteText = new EditText[nombreIngredients];
+        Switch[] switchToggle= new Switch[nombreIngredients];
+        for (int i=0;i<nombreIngredients;i++){
+
+            //set ingredients
+            ingredientsText[i] = (EditText) findViewById(R.id.nomIngredient);
+            ingredients[i].setNom(ingredientsText[i].getText().toString());
+
+            //set quantites
+            quantiteText[i] = (EditText) findViewById(R.id.Quantite);
+            ingredients[i].setQuantite(Double.parseDouble(quantiteText[i].getText().toString()));
+
+
+            //set optionnels
+            switchToggle[i] = (Switch) findViewById(R.id.switchOptionel);
+            ingredients[i].setOptionnel(switchToggle[i].isChecked());
+
+        }
+
+        //image not saved
+
+        Recette nouvelleRecette = new Recette(id,nom,categorie,typeDePlat,tempsDeCuisson,portions,favoris,image,infoAdd);
+        nouvelleRecette.ajouterEtapes(etapes);
+        nouvelleRecette.ajouterIngredient(ingredients);
+
+        return nouvelleRecette;
+
+    }
 }
