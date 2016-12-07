@@ -60,10 +60,48 @@ public class ListeBruteDeRecette {
     public ListeBruteDeRecette (Context context)
     {
         this.context = context;
+
+
+
     }
 
     public VignetteDeRecherche construireVignette(int id)
     {
+        try {
+            FileInputStream fileIn = context.openFileInput(FICHIER_A_LIRE);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileIn);
+
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+
+            String workingLine = reader.readLine();
+
+            while (workingLine != null){
+
+                if (workingLine.charAt(0) == '#') {
+                    if (workingLine.substring(2).equals(Integer.toString(id))) { // Trouvé!!
+                        String nom = reader.readLine();
+                        String categorie = reader.readLine();
+                        String typeDePlat = reader.readLine();
+
+                        for (int i = 0; i < 5; i++) {
+                            reader.readLine();
+                        }
+
+                        inputStreamReader.close();
+                        return new VignetteDeRecherche(Integer.parseInt(workingLine.substring(2)), nom, categorie, typeDePlat, -1, Integer.parseInt(reader.readLine().substring(2)));
+
+                    }
+                }
+
+
+            }
+
+            inputStreamReader.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
@@ -104,7 +142,6 @@ public class ListeBruteDeRecette {
 
             while (workingLine != null) {
 
-
                 if (workingLine.charAt(1) == '#') { //Début d'une nouvelle recette
                     workingId = Integer.parseInt(workingLine.substring(2));
 
@@ -117,8 +154,8 @@ public class ListeBruteDeRecette {
                     while (true) {
                         workingLine = reader.readLine();
 
-                        if (workingLine.charAt(1) != '%') {
-
+                        if (workingLine.charAt(1) == '%') {
+                            break;
                         }
                         workingIngredient = workingLine.split(" | ");
 
@@ -130,17 +167,12 @@ public class ListeBruteDeRecette {
                     }
 
                     if (currentPertinence > 0) { // On construit la vignette
-                        System.out.println("Test");
+                        resultat.add(construireVignette(workingId));
                     }
 
                 }
 
-
-
-
-
-
-
+                workingLine = reader.readLine();
 
             }
 
@@ -150,14 +182,8 @@ public class ListeBruteDeRecette {
             e.printStackTrace();
         }
 
-
-
-
-
         return null;
     }
-
-
 
     public SearchEntry[] separerTermes(String input)
     {
@@ -198,6 +224,7 @@ public class ListeBruteDeRecette {
                     } else { // Début d'une nouvelle chaîne
                         orTerms = new LinkedList<String>();
                         lastOperatorWasOr = true;
+                        orTerms.add(lastTerm);
                         lastTerm = "";
                     }
 
@@ -229,27 +256,114 @@ public class ListeBruteDeRecette {
 
     }
 
-    public Recette getRecette(String id)
+    public Recette getRecette (int id)
     {
 
-        //TEMP VARIABLE
-        int recipeId = -1;
-        String name = "KRAFT DINEER";
-        String categorie = "CANADIANA";
-        String typeDePlat = "UN BOL DE QUELQUE CHOSE";
-        Integer tempsDeCuisson = 5; // 5 minutes et pis that's it!
-        Integer portions = 1; // Une portion tabarnouche, je partage pas
-        Boolean favoris = true; // Ben c'est ben certain
-        String description = "C'est bon en caleer";
+        String nom;
+        String categorie;
+        String typeDePlat;
+        int tempsDeCuisson;
+        int portions;
+        int image;
+        Boolean favoris;
+        String description;
 
-        // READING HERE!
+        Ingredient[] ingredients;
+        String[] etapes;
+
+        try {
+            FileInputStream fileIn = context.openFileInput(FICHIER_A_LIRE);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileIn);
+
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+
+            String workingLine = reader.readLine();
+            String[] workingIngredient;
+
+            System.out.println("Entering loop!");
+            while (workingLine != null){
+
+                System.out.println(workingLine);
+
+                if (workingLine.length() > 0) {
+
+                    if (workingLine.charAt(0) == '#') {
+                        System.out.println("Found?");
+                        if (workingLine.substring(2).equals(Integer.toString(id))) { // Trouvé!!
+                            nom = reader.readLine();
+                            categorie = reader.readLine();
+                            typeDePlat = reader.readLine();
+                            tempsDeCuisson = Integer.parseInt(reader.readLine());
+                            portions = Integer.parseInt(reader.readLine());
+                            reader.readLine(); //Puisque image n'est pas implémenté encore
+                            image = -1;
+                            description = reader.readLine();
+
+                            if (reader.readLine().toLowerCase().equals("true")) {
+                                favoris = true;
+                            } else {
+                                favoris = false;
+                            }
+
+                            //Ingrédients
+                            int nombreIngredients = Integer.parseInt(reader.readLine().substring(2));
+
+                            ingredients = new Ingredient[nombreIngredients];
+
+                            for (int i = 0; i < nombreIngredients; i++) {
+                                workingLine = reader.readLine();
+                                workingIngredient = workingLine.split(" | ");
+
+                                boolean tmpOPT = false;
+
+                                if (workingIngredient[3].equals("true")) {
+                                    tmpOPT = true;
+                                }
+
+                                ingredients[i] = new Ingredient(workingIngredient[0], Double.parseDouble(workingIngredient[1]), workingIngredient[2], tmpOPT);
+                            }
+
+                            //Étapes
+
+                            int nombreEtapes = Integer.parseInt(reader.readLine().substring(2));
+
+                            etapes = new String[nombreEtapes];
+
+                            for (int i = 0; i < nombreEtapes; i++) {
+                                etapes[i] = reader.readLine();
+                            }
+
+                            inputStreamReader.close();
+                            reader.close();
+
+                            Recette newRecette = new Recette(id, nom,categorie,typeDePlat,tempsDeCuisson, portions, favoris, image, description);
+
+                            newRecette.ajouterIngredient(ingredients);
+                            newRecette.ajouterEtapes(etapes);
+
+                            return newRecette;
 
 
+                        }
+                    }
+                }
+                workingLine = reader.readLine();
 
+            }
 
+            inputStreamReader.close();
 
-        return new Recette(recipeId, name,categorie,typeDePlat,tempsDeCuisson, portions, favoris, 0, description);
-                //Catégorie et type de plat devraient avoir des enum quelques parts...
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+    public int getNextId() { // Retourne le prochain id de recette à utiliser et l'incrémente pour utilisation future.
+        nextId += 1;
+        return nextId - 1;
     }
 
     public void ajouterRecette(Recette nouvelleRecette)
@@ -259,48 +373,111 @@ public class ListeBruteDeRecette {
             FileOutputStream fileout = context.openFileOutput(FICHIER_A_LIRE, context.MODE_APPEND);
             OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
 
+            String ls = System.getProperty("line.separator");
 
             outputWriter.write("# " + nextId);
+            outputWriter.write(ls);
             outputWriter.write(nouvelleRecette.getNom());
+            outputWriter.write(ls);
             outputWriter.write(nouvelleRecette.getCategorie());
+            outputWriter.write(ls);
             outputWriter.write(nouvelleRecette.getTypeDePlat());
-            outputWriter.write(nouvelleRecette.getTempsDeCuisson());
-            outputWriter.write(nouvelleRecette.getPortions());
+            outputWriter.write(ls);
+            outputWriter.write(Integer.toString(nouvelleRecette.getTempsDeCuisson()));
+            outputWriter.write(ls);
+            outputWriter.write(Integer.toString(nouvelleRecette.getPortions()));
+            outputWriter.write(ls);
             outputWriter.write(" null? "); //IMAGE
+            outputWriter.write(ls);
             outputWriter.write(nouvelleRecette.getDescription());
+            outputWriter.write(ls);
             if (nouvelleRecette.getFavori()) {
                 outputWriter.write("true");
             } else {
                 outputWriter.write("false");
             }
+            outputWriter.write(ls);
 
             Ingredient[] workingIngredients = nouvelleRecette.getIngredients();
 
             outputWriter.write("& " + workingIngredients.length);
+            outputWriter.write(ls);
 
             for (int i = 0; i < workingIngredients.length; i++) {
                 outputWriter.write(workingIngredients[i].getNom()
                         + " | " + workingIngredients[i].getQuantite()
                         + " | " + workingIngredients[i].getUniteDeMesure()
                         + " | " + workingIngredients[i].estOptionnel());
+                outputWriter.write(ls);
             }
 
             String[] workingEtapes = nouvelleRecette.getEtapes();
 
             outputWriter.write("% " + workingEtapes.length);
+            outputWriter.write(ls);
 
             for (int i = 0; i < workingEtapes.length; i++) {
                 outputWriter.write(workingEtapes[i]);
+                outputWriter.write(ls);
             }
 
-            outputWriter.write(" "); // Espace additionel pour une meilleur lecture du fichier
+            outputWriter.write(ls);
 
             outputWriter.close();
+            System.out.println("Done!");
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+
     }
+
+    public void modifierRecette(Recette nouvelleRecette) {
+
+        try {
+            FileInputStream fileIn = context.openFileInput(FICHIER_A_LIRE);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileIn);
+
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+
+            String line;
+            String input = "";
+
+            while ((line = reader.readLine()) != null) input += line + '\n';
+
+            reader.close();
+
+            System.out.println(input); // check that it's inputted right
+
+            // this if structure determines whether or not to replace "0" or "1"
+            if (Integer.parseInt(type) == 0) {
+                input = input.replace(replaceWith + "1", replaceWith + "0");
+            }
+            else if (Integer.parseInt(type) == 1) {
+                input = input.replace(replaceWith + "0", replaceWith + "1");
+            }
+
+            // check if the new input is right
+            System.out.println("----------------------------------"  + '\n' + input);
+
+            // write the new String with the replaced line OVER the same file
+            FileOutputStream fileOut = new FileOutputStream("notes.txt");
+            fileOut.write(input.getBytes());
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
+        }
+
+
+
+
+
+    }
+
+
+
+
 }
