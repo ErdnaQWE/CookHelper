@@ -29,11 +29,13 @@ public class RecetteAdapter extends ArrayAdapter<Recette> {
         TextView nomView = (TextView) rowView.findViewById(R.id.textNom);
         TextView categorietTypeDePlatView = (TextView) rowView.findViewById(R.id.textCategorieEtType);
         TextView description = (TextView) rowView.findViewById(R.id.textView3);
+        TextView tempsEtPortions = (TextView) rowView.findViewById(R.id.TextePortionEtTemps);
 
         //thumbnail.setImageResource(getItem(position).getImage());
         nomView.setText(getItem(position).getNom());
         categorietTypeDePlatView.setText(getItem(position).getCategorieEtTypeDePlat());
         description.setText(getItem(position).getDescription());
+        tempsEtPortions.setText("Cette recette peut être complété en " + getItem(position).getTempsDeCuisson() + " minutes et produit " + getItem(position).getPortions() + " portions.");
 
         return rowView;
     }
