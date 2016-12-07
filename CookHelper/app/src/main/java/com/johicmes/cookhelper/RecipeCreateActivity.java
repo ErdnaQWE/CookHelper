@@ -4,12 +4,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 
 /**
  * Created by Daviiiiid on 2016-12-06.
  */
 public class RecipeCreateActivity extends AppCompatActivity {
+
+    private EditText idText, nomText, categorieText, typeDePlatText, tempsDeCuissonText, portionsText, descriptionText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +21,8 @@ public class RecipeCreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_create);
         //s'il manque du stuff ici ajoute le
 
+        //un exemple pour Anthony
+        /*
         //exemple d'ajouter un Button a un array de button, peut se faire pour tout type de view
         //typiquement tu veux ces variables comme des membres privés de cette classe.
         LeListnerQuiListenTout l = new LeListnerQuiListenTout();//pour les views qui sont Clickable
@@ -31,7 +37,7 @@ public class RecipeCreateActivity extends AppCompatActivity {
             buttons[i].setOnClickListener(l);//pour handler onclick
             relativeLayout.addView(buttons[i]);//pout ajouter ton view dynamique dans un layout particulier
         }
-        /* Notes
+           Notes
             -Il vas peut être falloir que tu joue avec des paramètres de tes views comme isVisible, clickable, setDefaultText, setWeight, setGravity...
             -J'utilise generateViewId pour qu'il n'y ai pas de conflit lorsqu'on appelle un view par son id, c'est pour ca qu'il y a le int array
             -L'idéal est d'insérer tes views dynamiques dans un layout qui contient juste ça
@@ -39,5 +45,49 @@ public class RecipeCreateActivity extends AppCompatActivity {
             -Les tooltips sont pas mal utiles pour ce genre de chose, la plus part des problèmes que tu peux avoir ont déjà été répondus sur des forums comme stack overflow
          */
 
+        idText = (EditText) findViewById(R.id.recetteId);
+
+        nomText = (EditText) findViewById(R.id.nomDeRecette);//I guess que c'est pas les bons id ici
+        categorieText=(EditText) findViewById(R.id.categorie);
+        typeDePlatText=(EditText) findViewById(R.id.typeDePlats);
+        tempsDeCuissonText=(EditText) findViewById(R.id.tempsPrep);
+        portionsText=(EditText) findViewById(R.id.portions);
+        descriptionText = (EditText) findViewById(R.id.description);
+    }
+
+    public void ChargerRecette(Recette recette)
+    {
+        nomText.setText(recette.getNom());
+        categorieText.setText(recette.getCategorie());
+        typeDePlatText.setText(recette.getTypeDePlat());
+
+        //affiche les etapes
+        int sizeEtapes = etapes.length;
+        EditText[] etapesText = new EditText[sizeEtapes];
+        for (int i=0;i<sizeEtapes;i++) {
+
+            etapesText[i] = (EditText) v.findViewById(R.id.step[i]);
+            etapesText[i].setText(editRecette.etapes[i]);
+        }
+
+        //affiche les ingredients
+        int sizeIngredients = ingredients.length;
+        EditText[] ingredientsText = new EditText[sizeIngredients];
+        EditText[] quantiteText = new EditText[sizeIngredients];
+        Switch[] switchToggle = new Switch[sizeIngredients];
+
+        for (int i=0;i<sizeIngredients;i++){
+            //set ingredients
+            ingredientsText[i] = (EditText) v.findViewById(R.id.ingredient[i]);
+            ingredientsText[i].setText(editRecette.ingredients[i].getNom());
+
+            //set quantites
+            quantiteText[i] = (EditText) v.findViewById(R.id.quantite[i]);
+            quantiteText[i].setText(new Double(editRecette.ingredients[i].getQuantite()).toString());
+
+            //set optionnels
+            switchToggle[i] = (Switch) v.findViewById(R.id.switch[i]);
+            switchToggle[i].checked=true;
+        }
     }
 }

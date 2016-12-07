@@ -62,64 +62,6 @@ public class RecipeBuilder {
 
     }
 
-    public void ChargerRecette(Recette recette)
-    {
-        RecipeBuilder editRecette = new RecipeBuilder(recette);
-
-        EditText idText = (EditText) v.findViewById(R.id.recetteId);//Ca c'est ce qui faut que tu fasse pour que ca marche mais il faudrait que tu le fasse dans LeListnerQuiListenTout
-        idText.setText(editRecette.id);
-
-        EditText nomText = (EditText) v.findViewById(R.id.nomDeRecette);
-        nomText.setText(editRecette.nom);
-
-        EditText categorieText=(EditText) v.findViewById(R.id.categorie);
-        categorieText.setText(editRecette.categorie);
-
-        EditText typeDePlatText=(EditText) v.findViewById(R.id.typeDePlats);
-        typeDePlatText.setText(editRecette.typeDePlat);
-
-        EditText tempsDeCuissonText=(EditText) v.findViewById(R.id.tempsPrep);
-        tempsDeCuissonText.setText(editRecette.tempsDeCuisson);
-
-        EditText portionsText=(EditText) v.findViewById(R.id.portions);
-        portionsText.setText(editRecette.portions);
-
-        EditText descriptionText = (EditText) v.findViewById(R.id.description);
-        descriptionText.setText(editRecette.infoAdd);
-
-        //affiche les etapes
-        int sizeEtapes = etapes.length;
-        EditText[] etapesText = new EditText[sizeEtapes];
-        for (int i=0;i<sizeEtapes;i++) {
-
-            etapesText[i] = (EditText) v.findViewById(R.id.step[i]);
-            etapesText[i].setText(editRecette.etapes[i]);
-        }
-
-        //affiche les ingredients
-        int sizeIngredients = ingredients.length;
-        EditText[] ingredientsText = new EditText[sizeIngredients];
-        EditText[] quantiteText = new EditText[sizeIngredients];
-        Switch[] switchToggle = new Switch[sizeIngredients];
-
-        for (int i=0;i<sizeIngredients;i++){
-            //set ingredients
-            ingredientsText[i] = (EditText) v.findViewById(R.id.ingredient[i]);
-            ingredientsText[i].setText(editRecette.ingredients[i].getNom());
-
-            //set quantites
-            quantiteText[i] = (EditText) v.findViewById(R.id.quantite[i]);
-            quantiteText[i].setText(new Double(editRecette.ingredients[i].getQuantite()).toString());
-
-            //set optionnels
-            switchToggle[i] = (Switch) v.findViewById(R.id.switch[i]);
-            switchToggle[i].checked=true;
-        }
-
-
-
-    }
-
     public Recette compilerRecette(int nombreEtapes, int nombreIngredients)
     {
 
