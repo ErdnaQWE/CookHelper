@@ -20,7 +20,7 @@ public class RecipeCreateActivity extends AppCompatActivity {
 
     private EditText idText, nomText, tempsDeCuissonText, portionsText, descriptionText;
     private EditText[] etapesText;//pourrait être autre chose qu'un array
-    private Spinner categorieText,typeDePlatText;R.id.search
+    private EditText categorieText,typeDePlatText;//devrait être des comboBox/spinner
     private ListView etapeView, ingredientView;
 
 
@@ -56,8 +56,8 @@ public class RecipeCreateActivity extends AppCompatActivity {
 
         idText = (EditText) findViewById(R.id.recetteId);
         nomText = (EditText) findViewById(R.id.nomderecette);//I guess que c'est pas les bons id ici
-        categorieText=(Spinner) findViewById(R.id.categorieSpinner);
-        typeDePlatText=(Spinner) findViewById(R.id.TypeDePlatSpinner);
+        categorieText=(EditText) findViewById(R.id.categorieSpinner);
+        typeDePlatText=(EditText) findViewById(R.id.TypeDePlatSpinner);
         tempsDeCuissonText=(EditText) findViewById(R.id.tempsPrep);
         portionsText=(EditText) findViewById(R.id.portions);
         descriptionText = (EditText) findViewById(R.id.infoAdd);
@@ -72,9 +72,8 @@ public class RecipeCreateActivity extends AppCompatActivity {
         tempsDeCuissonText.setText(recette.getTempsDeCuisson());
         portionsText.setText(recette.getPortions());
         descriptionText.setText(recette.getDescription());
-        //todo trouver comment setter le spinner a une valeur par défaut setText n'existe pas pour des spinners, on peut faire ça demain
-        //categorieText.setText(recette.getCategorie());
-        //typeDePlatText.setText(recette.getTypeDePlat());
+        categorieText.setText(recette.getCategorie());
+        typeDePlatText.setText(recette.getTypeDePlat());
 
         List<String> etapes = new ArrayList<String>();
         for (String s : recette.getEtapes())
