@@ -21,11 +21,6 @@ public class LeListnerQuiListenTout implements View.OnClickListener
     {
         switch (v.findViewById(v.getId()).getId())
         {
-            case R.id.AddRecipe://exemple de comment ca marche, met le id approprié ici
-            {
-                //code ici () genre this is what happens when you click on this...
-                break;
-            }
             case R.id.buttonDone:
             {
                 ListView viewIngredients = (ListView) v.findViewById(R.id.addIngredients);
@@ -42,7 +37,10 @@ public class LeListnerQuiListenTout implements View.OnClickListener
             {
                 RecipeBuilder build = new RecipeBuilder();
             }
-
+            case R.id.search:
+            {
+                ListeBruteDeRecette listeBruteDeRecette = new ListeBruteDeRecette();
+            }
         }
     }
 }

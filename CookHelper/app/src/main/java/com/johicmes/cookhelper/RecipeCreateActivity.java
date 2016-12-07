@@ -5,9 +5,13 @@ import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Daviiiiid on 2016-12-06.
@@ -16,7 +20,8 @@ public class RecipeCreateActivity extends AppCompatActivity {
 
     private EditText idText, nomText, tempsDeCuissonText, portionsText, descriptionText;
     private EditText[] etapesText;//pourrait être autre chose qu'un array
-    private Spinner categorieText,typeDePlatText;
+    private EditText categorieText,typeDePlatText;//devrait être des comboBox/spinner
+    private ListView etapeView, ingredientView;
 
 
     @Override
@@ -51,14 +56,13 @@ public class RecipeCreateActivity extends AppCompatActivity {
 
         idText = (EditText) findViewById(R.id.recetteId);
         nomText = (EditText) findViewById(R.id.nomderecette);//I guess que c'est pas les bons id ici
-        categorieText=(Spinner) findViewById(R.id.categorieSpinner);
-        typeDePlatText=(Spinner) findViewById(R.id.TypeDePlatSpinner);
+        categorieText=(EditText) findViewById(R.id.categorieSpinner);
+        typeDePlatText=(EditText) findViewById(R.id.TypeDePlatSpinner);
         tempsDeCuissonText=(EditText) findViewById(R.id.tempsPrep);
         portionsText=(EditText) findViewById(R.id.portions);
         descriptionText = (EditText) findViewById(R.id.infoAdd);
-        //todo mettre les bon id pour les spinners
-        categorieText = (Spinner) findViewById(0); //tu avais oublié d'ajouter
-        typeDePlatText = (Spinner) findViewById(0);
+        etapeView = (ListView) findViewById(R.id.addSteps);
+        ingredientView = (ListView) findViewById(R.id.addIngredients);
     }
 
     public void ChargerRecette(Recette recette)
@@ -68,42 +72,24 @@ public class RecipeCreateActivity extends AppCompatActivity {
         tempsDeCuissonText.setText(recette.getTempsDeCuisson());
         portionsText.setText(recette.getPortions());
         descriptionText.setText(recette.getDescription());
-        //todo trouver comment setter le spinner a une valeur par défaut setText n'existe pas pour des spinners, on peut faire ça demain
-        //categorieText.setText(recette.getCategorie());
-        //typeDePlatText.setText(recette.getTypeDePlat());
+        categorieText.setText(recette.getCategorie());
+        typeDePlatText.setText(recette.getTypeDePlat());
 
-
-        //affiche les etapes
-        int sizeEtapes = recette.getEtapes().length;
-        etapesText = new EditText[sizeEtapes];// on doit créer les étapes dynamiquement
-        //todo créer ces EditText dynamiquement, demande a Johic a propos des adapters qu'il a fait pour étapes et ingrédients ca pourrait te faciliter la tâche
-        for (int i=0;i<sizeEtapes;i++) {
-
-            etapesText[i] = (EditText) findViewById(R.id.step[i]);//ce id est invalide, tu dois créer les EditText dynamiquement comme dans l'exemple en haut
-            etapesText[i].setText(recette.getEtapes()[i]);//cette ligne marche
+        List<String> etapes = new ArrayList<String>();
+        for (String s : recette.getEtapes())
+        {
+            etapes.add(s);
         }
+        etapeView.setAdapter(new EtapeAdapter(this,etapes));
 
-        //affiche les ingredients
-        int sizeIngredients = recette.getIngredients().length;
-        //demande a Johic c'est quoi qu'il a fait pour ingrédient, il a fait un xml pour les ingrédients et je crois que tu peux les ajouter comme dans lab 6
-        //tu peux checker les powerpoints de ce lab quand tu comprends c'est assez simple, le adapter est déjà fait
-        EditText[] ingredientsText = new EditText[sizeIngredients];
-        EditText[] quantiteText = new EditText[sizeIngredients];
-        Switch[] switchToggle = new Switch[sizeIngredients];
 
-        for (int i=0;i<sizeIngredients;i++){
-            //set ingredients
-            ingredientsText[i] = (EditText) findViewById(R.id.ingredient[i]);//ce id est invalide
-            ingredientsText[i].setText(recette.getIngredients()[i].getNom());
 
-            //set quantites
-            quantiteText[i] = (EditText) findViewById(R.id.quantite[i]);
-            quantiteText[i].setText(new Double(recette.getIngredients()[i].getQuantite()).toString());
-
-            //set optionnels
-            switchToggle[i] = (Switch) findViewById(R.id.switch[i]);
-            switchToggle[i].toggle();
+        List<Ingredient> ingredients = new ArrayList<Ingredient>();
+        for (Ingredient i : recette.getIngredients())
+        {
+            ingredients.add(i);
         }
+        ingredientView.setAdapter(new EtapeAdapter(this,ingredients));
     }
 
 
@@ -132,4 +118,83 @@ public class RecipeCreateActivity extends AppCompatActivity {
         });
      */
 
+    public Recette compilerRecette(int nombreEtapes, int nombreIngredients)
+    {
+
+        String nom=null;
+        String categorie=null;
+        String typeDePlat=null;
+        int tempsDeCuisson=0;
+        String[] etapes=null;
+        Ingredient[] ingredients=null;
+        int portions=0;
+        boolean favoris=false;
+        int image=0;
+        String infoAdd=null;
+
+        EditText nomText = (EditText) v.findViewById(R.id.nomderecette);
+        nom = nomText.getText().toString();
+
+        /* Are now spinners... to be updated
+        EditText categorieText=(EditText) v.findViewById(R.id.categorie);
+        categorie = categorieText.getText().toString();
+
+        EditText typeDePlatText=(EditText) v.findViewById(R.id.typeDePlats);
+        typeDePlat = typeDePlatText.getText().toString();
+        */
+
+
+        EditText tempsDeCuissonText=(EditText) findViewById(R.id.tempsPrep);
+        tempsDeCuisson = Integer.parseInt(tempsDeCuissonText.getText().toString());
+
+        EditText portionsText=(EditText) findViewById(R.id.portions);
+        portions = Integer.parseInt(portionsText.getText().toString());
+
+        EditText descriptionText=(EditText) findViewById(R.id.infoAdd);
+        infoAdd = descriptionText.getText().toString();
+
+
+        /* needs to be changed pour prendre les parties de ouias
+        //etapes
+        //add etapes boutton doit incremeter nombreEtapes
+        EditText[] etapesText = new EditText[nombreEtapes];
+        for (int i=0;i<nombreEtapes;i++){
+
+            EditText etapesText[i] = (EditText) v.findViewById(R.id.);
+            etapes[i] = etapesText[i].getText().toString();
+
+
+        }
+       */
+        //ingredients
+        //add ingredients boutton doit incrementer nombreIngredients
+        EditText[] ingredientsText = new EditText[nombreIngredients];
+        EditText[] quantiteText = new EditText[nombreIngredients];
+        Switch[] switchToggle= new Switch[nombreIngredients];
+        for (int i=0;i<nombreIngredients;i++){
+
+            //set ingredients
+            ingredientsText[i] = (EditText) findViewById(R.id.nomIngredient);
+            ingredients[i].setNom(ingredientsText[i].getText().toString());
+
+            //set quantites
+            quantiteText[i] = (EditText) findViewById(R.id.Quantite);
+            ingredients[i].setQuantite(Double.parseDouble(quantiteText[i].getText().toString()));
+
+
+            //set optionnels
+            switchToggle[i] = (Switch) findViewById(R.id.switchOptionel);
+            ingredients[i].setOptionnel(switchToggle[i].isChecked());
+
+        }
+
+        //image not saved
+
+        Recette nouvelleRecette = new Recette(id,nom,categorie,typeDePlat,tempsDeCuisson,portions,favoris,image,infoAdd);
+        nouvelleRecette.ajouterEtapes(etapes);
+        nouvelleRecette.ajouterIngredient(ingredients);
+
+        return nouvelleRecette;
+
+    }
 }
