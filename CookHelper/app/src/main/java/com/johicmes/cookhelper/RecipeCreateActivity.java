@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.Switch;
 
 /**
@@ -13,7 +14,9 @@ import android.widget.Switch;
  */
 public class RecipeCreateActivity extends AppCompatActivity {
 
-    private EditText idText, nomText, categorieText, typeDePlatText, tempsDeCuissonText, portionsText, descriptionText;
+    private EditText idText, nomText, tempsDeCuissonText, portionsText, descriptionText;
+    private Spinner categorieText,typeDePlatText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,47 +50,52 @@ public class RecipeCreateActivity extends AppCompatActivity {
 
         idText = (EditText) findViewById(R.id.recetteId);
 
-        nomText = (EditText) findViewById(R.id.nomDeRecette);//I guess que c'est pas les bons id ici
-        categorieText=(EditText) findViewById(R.id.categorie);
-        typeDePlatText=(EditText) findViewById(R.id.typeDePlats);
+        nomText = (EditText) findViewById(R.id.nomderecette);//I guess que c'est pas les bons id ici
+        categorieText=(Spinner) findViewById(R.id.categorieSpinner);
+        typeDePlatText=(Spinner) findViewById(R.id.TypeDePlatSpinner);
         tempsDeCuissonText=(EditText) findViewById(R.id.tempsPrep);
         portionsText=(EditText) findViewById(R.id.portions);
-        descriptionText = (EditText) findViewById(R.id.description);
+        descriptionText = (EditText) findViewById(R.id.infoAdd);
     }
 
     public void ChargerRecette(Recette recette)
     {
+        idText.setText(recette.getId());
         nomText.setText(recette.getNom());
+        tempsDeCuissonText.setText(recette.getTempsDeCuisson());
+        portionsText.setText(recette.getPortions());
+        descriptionText.setText(recette.getDescription());
         categorieText.setText(recette.getCategorie());
         typeDePlatText.setText(recette.getTypeDePlat());
 
+
         //affiche les etapes
-        int sizeEtapes = etapes.length;
+        int sizeEtapes = recette.getEtapes().length;
         EditText[] etapesText = new EditText[sizeEtapes];
         for (int i=0;i<sizeEtapes;i++) {
 
-            etapesText[i] = (EditText) v.findViewById(R.id.step[i]);
-            etapesText[i].setText(editRecette.etapes[i]);
+            etapesText[i] = (EditText) findViewById(R.id.step[i]);
+            etapesText[i].setText(recette.getEtapes()[i]);
         }
 
         //affiche les ingredients
-        int sizeIngredients = ingredients.length;
+        int sizeIngredients = recette.getIngredients().length;
         EditText[] ingredientsText = new EditText[sizeIngredients];
         EditText[] quantiteText = new EditText[sizeIngredients];
         Switch[] switchToggle = new Switch[sizeIngredients];
 
         for (int i=0;i<sizeIngredients;i++){
             //set ingredients
-            ingredientsText[i] = (EditText) v.findViewById(R.id.ingredient[i]);
-            ingredientsText[i].setText(editRecette.ingredients[i].getNom());
+            ingredientsText[i] = (EditText) findViewById(R.id.ingredient[i]);
+            ingredientsText[i].setText(recette.getIngredients()[i].getNom());
 
             //set quantites
-            quantiteText[i] = (EditText) v.findViewById(R.id.quantite[i]);
-            quantiteText[i].setText(new Double(editRecette.ingredients[i].getQuantite()).toString());
+            quantiteText[i] = (EditText) findViewById(R.id.quantite[i]);
+            quantiteText[i].setText(new Double(recette.getIngredients()[i].getQuantite()).toString());
 
             //set optionnels
-            switchToggle[i] = (Switch) v.findViewById(R.id.switch[i]);
-            switchToggle[i].checked=true;
+            switchToggle[i] = (Switch) findViewById(R.id.switch[i]);
+            switchToggle[i].toggle();
         }
     }
 }
