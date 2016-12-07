@@ -1,8 +1,8 @@
 package com.johicmes.cookhelper;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -15,6 +15,7 @@ import android.widget.Switch;
 public class RecipeCreateActivity extends AppCompatActivity {
 
     private EditText idText, nomText, tempsDeCuissonText, portionsText, descriptionText;
+    private EditText[] etapesText;//pourrait être autre chose qu'un array
     private Spinner categorieText,typeDePlatText;
 
 
@@ -49,13 +50,15 @@ public class RecipeCreateActivity extends AppCompatActivity {
          */
 
         idText = (EditText) findViewById(R.id.recetteId);
-
         nomText = (EditText) findViewById(R.id.nomderecette);//I guess que c'est pas les bons id ici
         categorieText=(Spinner) findViewById(R.id.categorieSpinner);
         typeDePlatText=(Spinner) findViewById(R.id.TypeDePlatSpinner);
         tempsDeCuissonText=(EditText) findViewById(R.id.tempsPrep);
         portionsText=(EditText) findViewById(R.id.portions);
         descriptionText = (EditText) findViewById(R.id.infoAdd);
+        //todo mettre les bon id pour les spinners
+        categorieText = (Spinner) findViewById(0); //tu avais oublié d'ajouter
+        typeDePlatText = (Spinner) findViewById(0);
     }
 
     public void ChargerRecette(Recette recette)
@@ -65,28 +68,32 @@ public class RecipeCreateActivity extends AppCompatActivity {
         tempsDeCuissonText.setText(recette.getTempsDeCuisson());
         portionsText.setText(recette.getPortions());
         descriptionText.setText(recette.getDescription());
-        categorieText.setText(recette.getCategorie());
-        typeDePlatText.setText(recette.getTypeDePlat());
+        //todo trouver comment setter le spinner a une valeur par défaut setText n'existe pas pour des spinners, on peut faire ça demain
+        //categorieText.setText(recette.getCategorie());
+        //typeDePlatText.setText(recette.getTypeDePlat());
 
 
         //affiche les etapes
         int sizeEtapes = recette.getEtapes().length;
-        EditText[] etapesText = new EditText[sizeEtapes];
+        etapesText = new EditText[sizeEtapes];// on doit créer les étapes dynamiquement
+        //todo créer ces EditText dynamiquement, demande a Johic a propos des adapters qu'il a fait pour étapes et ingrédients ca pourrait te faciliter la tâche
         for (int i=0;i<sizeEtapes;i++) {
 
-            etapesText[i] = (EditText) findViewById(R.id.step[i]);
-            etapesText[i].setText(recette.getEtapes()[i]);
+            etapesText[i] = (EditText) findViewById(R.id.step[i]);//ce id est invalide, tu dois créer les EditText dynamiquement comme dans l'exemple en haut
+            etapesText[i].setText(recette.getEtapes()[i]);//cette ligne marche
         }
 
         //affiche les ingredients
         int sizeIngredients = recette.getIngredients().length;
+        //demande a Johic c'est quoi qu'il a fait pour ingrédient, il a fait un xml pour les ingrédients et je crois que tu peux les ajouter comme dans lab 6
+        //tu peux checker les powerpoints de ce lab quand tu comprends c'est assez simple, le adapter est déjà fait
         EditText[] ingredientsText = new EditText[sizeIngredients];
         EditText[] quantiteText = new EditText[sizeIngredients];
         Switch[] switchToggle = new Switch[sizeIngredients];
 
         for (int i=0;i<sizeIngredients;i++){
             //set ingredients
-            ingredientsText[i] = (EditText) findViewById(R.id.ingredient[i]);
+            ingredientsText[i] = (EditText) findViewById(R.id.ingredient[i]);//ce id est invalide
             ingredientsText[i].setText(recette.getIngredients()[i].getNom());
 
             //set quantites
@@ -98,4 +105,31 @@ public class RecipeCreateActivity extends AppCompatActivity {
             switchToggle[i].toggle();
         }
     }
+
+
+    //exemple du lab 6, tu peux peut être faire ça pour étapes et ingrédients
+    /*
+        ListView listView = (ListView) findViewById(R.id.listRecettes);
+
+        //cette partie est juste créer une liste du type du adapter
+        List<Recette> listRecettes = new ArrayList<Recette>();
+        listRecettes.add(new Recette("Solitaire 3.14","Canada",R.drawable.ic_launcher));
+        listRecettes.add(new Recette("Meilleur jeu du monde","Canada",R.drawable.ic_launcher));
+
+
+        //cette partie est le Adapter qui est ajouté au listView
+        final RecetteAdapter recetteAdapter = new RecetteAdapter(this,listRecettes);
+        listView.setAdapter(recetteAdapter);
+
+
+        //cette partie est juste ajouter à la liste quand le bouton est pesé, c'est juste la partie ajouter qui devrais t'intéresser
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            public void onItemClick (AdapterView<?> parent, View v, int position, long id)
+            {
+                recetteAdapter.add(new Recette("nouveau", "inconnu", R.drawable.ic_launcher));
+                recetteAdapter.notifyDataSetChanged();
+            }
+        });
+     */
+
 }
