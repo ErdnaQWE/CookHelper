@@ -41,6 +41,22 @@ public class LeListnerQuiListenTout implements View.OnClickListener
             {
                 ListeBruteDeRecette listeBruteDeRecette = new ListeBruteDeRecette();
             }
+            case R.id.addIngredients:
+            {//ajouter un nouvel ingréeient
+                ((IngredientAdapter)((ListView)v).getAdapter()).add(new Ingredient("",0f,"",false));
+                ((IngredientAdapter)((ListView)v).getAdapter()).notifyDataSetChanged();
+            }
+            case R.id.addSteps:
+            {
+                ((EtapeAdapter)((ListView)v).getAdapter()).add("");
+                ((EtapeAdapter)((ListView)v).getAdapter()).notifyDataSetChanged();
+            }
+            case R.id.buttonDone:
+            {
+                Recette recette = ((RecipeCreateActivity)v.getParent()).compilerRecette();// il vas falloir vérifier si ce cast fonctionne, je ne suis pas sur si getParent retourne le activity
+                //code pour finir le activity
+                //on la met où la recette
+            }
         }
     }
 }

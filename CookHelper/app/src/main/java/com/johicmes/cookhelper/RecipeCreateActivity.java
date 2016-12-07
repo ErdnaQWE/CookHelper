@@ -22,37 +22,17 @@ public class RecipeCreateActivity extends AppCompatActivity {
     private EditText[] etapesText;//pourrait être autre chose qu'un array
     private EditText categorieText,typeDePlatText;//devrait être des comboBox/spinner
     private ListView etapeView, ingredientView;
+    private EtapeAdapter etapeAdapter;
+    private IngredientAdapter ingredientAdapter;
+    private LeListnerQuiListenTout l;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_create);
-        //s'il manque du stuff ici ajoute le
 
-        //un exemple pour Anthony
-        /*
-        //exemple d'ajouter un Button a un array de button, peut se faire pour tout type de view
-        //typiquement tu veux ces variables comme des membres privés de cette classe.
-        LeListnerQuiListenTout l = new LeListnerQuiListenTout();//pour les views qui sont Clickable
-        RelativeLayout relativeLayout = (RelativeLayout)findViewById(R.id.relative_layout);//r.id.relative_layout indique un relativeLayout hardcoded
-        Button[] buttons = new Button[10];//juste pour l'exemple
-        int[] buttonIds = new int[10];//pour garder les id, devrait être privé avec une méthode publique du genre getElement(int)
-        for (int i = 0; i<10; i++)
-        {
-            buttons[i] = new Button(this);//fonctionne aussi avec les layouts
-            buttons[i].generateViewId();//Cette méthode génère un id unique
-            buttonIds[i] = buttons[i].getId();//sauvegarde ce int pour un appel futur
-            buttons[i].setOnClickListener(l);//pour handler onclick
-            relativeLayout.addView(buttons[i]);//pout ajouter ton view dynamique dans un layout particulier
-        }
-           Notes
-            -Il vas peut être falloir que tu joue avec des paramètres de tes views comme isVisible, clickable, setDefaultText, setWeight, setGravity...
-            -J'utilise generateViewId pour qu'il n'y ai pas de conflit lorsqu'on appelle un view par son id, c'est pour ca qu'il y a le int array
-            -L'idéal est d'insérer tes views dynamiques dans un layout qui contient juste ça
-            -La méthode addView insère à la fin, il-y-a du polymorphisme pour cette méthode alors tu peux jouer avec ça si tu veux changer du stuff de plaçe
-            -Les tooltips sont pas mal utiles pour ce genre de chose, la plus part des problèmes que tu peux avoir ont déjà été répondus sur des forums comme stack overflow
-         */
+        l = new LeListnerQuiListenTout();
 
         idText = (EditText) findViewById(R.id.recetteId);
         nomText = (EditText) findViewById(R.id.nomderecette);//I guess que c'est pas les bons id ici
@@ -62,11 +42,14 @@ public class RecipeCreateActivity extends AppCompatActivity {
         portionsText=(EditText) findViewById(R.id.portions);
         descriptionText = (EditText) findViewById(R.id.infoAdd);
         etapeView = (ListView) findViewById(R.id.addSteps);
+        etapeView.setOnClickListener(l);
         ingredientView = (ListView) findViewById(R.id.addIngredients);
+        ingredientView.setOnClickListener(l);
     }
 
     public void ChargerRecette(Recette recette)
     {
+        //mettre les bonnes valeurs dans les EditText
         idText.setText(recette.getId());
         nomText.setText(recette.getNom());
         tempsDeCuissonText.setText(recette.getTempsDeCuisson());
@@ -75,25 +58,23 @@ public class RecipeCreateActivity extends AppCompatActivity {
         categorieText.setText(recette.getCategorie());
         typeDePlatText.setText(recette.getTypeDePlat());
 
-        List<String> etapes = new ArrayList<String>();
-        for (String s : recette.getEtapes())
-        {
-            etapes.add(s);
-        }
-        etapeView.setAdapter(new EtapeAdapter(this,etapes));
-
-
-
+        //ajouter les ingrédients
         List<Ingredient> ingredients = new ArrayList<Ingredient>();
         for (Ingredient i : recette.getIngredients())
-        {
             ingredients.add(i);
-        }
-        ingredientView.setAdapter(new IngredientAdapter(this,ingredients));
+        ingredientAdapter = new IngredientAdapter(this,ingredients);
+        ingredientView.setAdapter(ingredientAdapter);
+
+        //ajouter les étapes
+        List<String> etapes = new ArrayList<String>();
+        for (String s : recette.getEtapes())
+            etapes.add(s);
+        etapeAdapter = new EtapeAdapter(this,etapes);
+        etapeView.setAdapter(etapeAdapter);
     }
 
 
-    //exemple du lab 6, tu peux peut être faire ça pour étapes et ingrédients
+    //exemple du lab 6 pour référence
     /*
         ListView listView = (ListView) findViewById(R.id.listRecettes);
 
@@ -108,7 +89,7 @@ public class RecipeCreateActivity extends AppCompatActivity {
         listView.setAdapter(recetteAdapter);
 
 
-        //cette partie est juste ajouter à la liste quand le bouton est pesé, c'est juste la partie ajouter qui devrais t'intéresser
+        //cette partie est juste ajouter à la liste quand le bouton est pesé, c'est juste la partie ajouter qui devrais être intéressante
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick (AdapterView<?> parent, View v, int position, long id)
             {
@@ -118,9 +99,10 @@ public class RecipeCreateActivity extends AppCompatActivity {
         });
      */
 
-    public Recette compilerRecette(int nombreEtapes, int nombreIngredients)
+    public Recette compilerRecette()
     {
-
+        // à supprimer si c'est ce qu'il faut que cette classe fait
+        /* ce que Anthony a fait
         String nom=null;
         String categorie=null;
         String typeDePlat=null;
@@ -132,16 +114,9 @@ public class RecipeCreateActivity extends AppCompatActivity {
         int image=0;
         String infoAdd=null;
 
-        EditText nomText = (EditText) v.findViewById(R.id.nomderecette);
         nom = nomText.getText().toString();
-
-        /* Are now spinners... to be updated
-        EditText categorieText=(EditText) v.findViewById(R.id.categorie);
         categorie = categorieText.getText().toString();
-
-        EditText typeDePlatText=(EditText) v.findViewById(R.id.typeDePlats);
         typeDePlat = typeDePlatText.getText().toString();
-        */
 
 
         EditText tempsDeCuissonText=(EditText) findViewById(R.id.tempsPrep);
@@ -154,18 +129,18 @@ public class RecipeCreateActivity extends AppCompatActivity {
         infoAdd = descriptionText.getText().toString();
 
 
-        /* needs to be changed pour prendre les parties de ouias
+        // needs to be changed pour prendre les parties de ouias
         //etapes
         //add etapes boutton doit incremeter nombreEtapes
-        EditText[] etapesText = new EditText[nombreEtapes];
-        for (int i=0;i<nombreEtapes;i++){
+        //EditText[] etapesText = new EditText[nombreEtapes];
+        //for (int i=0;i<nombreEtapes;i++){
 
-            EditText etapesText[i] = (EditText) v.findViewById(R.id.);
-            etapes[i] = etapesText[i].getText().toString();
+            //EditText etapesText[i] = (EditText) v.findViewById(R.id.);
+            //etapes[i] = etapesText[i].getText().toString();
 
 
-        }
-       */
+        //}
+
         //ingredients
         //add ingredients boutton doit incrementer nombreIngredients
         EditText[] ingredientsText = new EditText[nombreIngredients];
@@ -193,7 +168,27 @@ public class RecipeCreateActivity extends AppCompatActivity {
         Recette nouvelleRecette = new Recette(id,nom,categorie,typeDePlat,tempsDeCuisson,portions,favoris,image,infoAdd);
         nouvelleRecette.ajouterEtapes(etapes);
         nouvelleRecette.ajouterIngredient(ingredients);
+        */
 
+        Recette nouvelleRecette = new Recette(
+                Integer.parseInt(idText.getText().toString()),
+                nomText.getText().toString(),
+                categorieText.getText().toString(),
+                typeDePlatText.getText().toString(),
+                Integer.parseInt(tempsDeCuissonText.getText().toString()),
+                Integer.parseInt(portionsText.getText().toString()),
+                false,//favoris
+                R.drawable.kimchicken,//image
+                descriptionText.getText().toString()
+        );
+        Ingredient[] ingredients = new Ingredient[ingredientAdapter.getCount()];
+        for(int i = 0; i<ingredients.length; i++)
+            ingredients[i] = ingredientAdapter.getItem(i);
+        nouvelleRecette.ajouterIngredient(ingredients);
+        String[] etapes = new String[etapeAdapter.getCount()];
+        for(int i = 0; i<etapes.length; i++)
+            etapes[i] = etapeAdapter.getItem(i);
+        nouvelleRecette.ajouterEtapes(etapes);
         return nouvelleRecette;
 
     }

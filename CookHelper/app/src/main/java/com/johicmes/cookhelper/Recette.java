@@ -48,7 +48,7 @@ public class Recette {
     //constructeur avec les éléments par défaut
     public Recette ()
     {
-        constructeur(-1,"nom", "categorie", "type de plat", 0, 0, false, 0, "Lorem Ipsum");
+        constructeur(-1,"nom", "categorie", "type de plat", 0, 0, false, R.drawable.kimchicken, "Lorem Ipsum");
     }
 
     public void afficher()//ca fait quoi afficher? -> On avait besoin de mettre sa pour les diagrammes de séquence, c'est pour afficher la recette dans l'activity, sa se peut que tu va pas l'utiliser though
