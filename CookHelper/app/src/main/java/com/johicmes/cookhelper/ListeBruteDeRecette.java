@@ -1,7 +1,10 @@
 package com.johicmes.cookhelper;
 
 import android.content.Context;
+
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
@@ -13,6 +16,7 @@ import java.util.LinkedList;
  */
 public class ListeBruteDeRecette {
     private String FICHIER_A_LIRE = "recetteDatabase.txt";
+    private String FICHIER_NEXTID = "recetteDatabaseNext.txt";
 
     //associations
     ListeDeRecette listeDeRecette;
@@ -57,12 +61,25 @@ public class ListeBruteDeRecette {
     }
 
 
-    public ListeBruteDeRecette (Context context)
-    {
+    public ListeBruteDeRecette (Context context) throws IOException {
         this.context = context;
 
+        File file = context.getFileStreamPath(FICHIER_NEXTID);
+        if(file == null || !file.exists()) {
+            FileOutputStream fileout = new FileOutputStream(file);
+            OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
+            outputWriter.write("0");
+            outputWriter.close();
+        } else {
+            FileInputStream fileIn = context.openFileInput(FICHIER_NEXTID);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileIn);
 
+            BufferedReader reader = new BufferedReader(inputStreamReader);
 
+            nextId = Integer.parseInt(reader.readLine());
+
+            reader.close();
+        }
     }
 
     public VignetteDeRecherche construireVignette(int id)
@@ -106,8 +123,7 @@ public class ListeBruteDeRecette {
     }
 
 
-     /* La fonction de recherche. Si le tout s'exécute correctement, devrait afficher les résultats dans la liste
-
+     /*
     Exemple de input : Patate & !Carotte & Chou | Sirop d'érable
     sera interprété comme suit:
         Je veux: (Patate) ET (Chou OU Sirop d'érable)
@@ -363,6 +379,10 @@ public class ListeBruteDeRecette {
 
     public int getNextId() { // Retourne le prochain id de recette à utiliser et l'incrémente pour utilisation future.
         nextId += 1;
+
+
+
+
         return nextId - 1;
     }
 
@@ -375,7 +395,7 @@ public class ListeBruteDeRecette {
 
             String ls = System.getProperty("line.separator");
 
-            outputWriter.write("# " + nextId);
+            outputWriter.write(nouvelleRecette.getId());
             outputWriter.write(ls);
             outputWriter.write(nouvelleRecette.getNom());
             outputWriter.write(ls);
@@ -421,6 +441,9 @@ public class ListeBruteDeRecette {
                 outputWriter.write(ls);
             }
 
+            outputWriter.write("@ " + nouvelleRecette.getId());
+            outputWriter.write(ls);
+
             outputWriter.write(ls);
 
             outputWriter.close();
@@ -436,6 +459,13 @@ public class ListeBruteDeRecette {
 
     public void modifierRecette(Recette nouvelleRecette) {
 
+        suprimmerRecette(nouvelleRecette.getId());
+        ajouterRecette(nouvelleRecette);
+
+    }
+
+    public void suprimmerRecette(int id) {
+
         try {
             FileInputStream fileIn = context.openFileInput(FICHIER_A_LIRE);
             InputStreamReader inputStreamReader = new InputStreamReader(fileIn);
@@ -445,39 +475,30 @@ public class ListeBruteDeRecette {
             String line;
             String input = "";
 
-            while ((line = reader.readLine()) != null) input += line + '\n';
+            while ((line = reader.readLine()) != null) input += line + '\n'; // On lit le fichier au complet
 
             reader.close();
 
-            System.out.println(input); // check that it's inputted right
+            //System.out.println(input);
 
-            // this if structure determines whether or not to replace "0" or "1"
-            if (Integer.parseInt(type) == 0) {
-                input = input.replace(replaceWith + "1", replaceWith + "0");
+            int indexDebut = input.indexOf("# " + id); // On retrouve l'entrée de la recette.
+            int indexFin = input.indexOf("@ " + id);
+
+            if (indexDebut != -1 && indexFin != -1) {
+
+                String newInput = input.substring(0,indexDebut) + input.substring(indexFin + ("@ " + id).length()); //On enlève la vieille recette
+
+                // On remplace le vieux fichier avec le nouveau
+                FileOutputStream fileOut = context.openFileOutput(FICHIER_A_LIRE, context.MODE_PRIVATE);
+                fileOut.write(input.getBytes());
+                fileOut.close();
             }
-            else if (Integer.parseInt(type) == 1) {
-                input = input.replace(replaceWith + "0", replaceWith + "1");
-            }
-
-            // check if the new input is right
-            System.out.println("----------------------------------"  + '\n' + input);
-
-            // write the new String with the replaced line OVER the same file
-            FileOutputStream fileOut = new FileOutputStream("notes.txt");
-            fileOut.write(input.getBytes());
-            fileOut.close();
 
         } catch (Exception e) {
             System.out.println("Problem reading file.");
         }
 
-
-
-
-
     }
-
-
 
 
 }

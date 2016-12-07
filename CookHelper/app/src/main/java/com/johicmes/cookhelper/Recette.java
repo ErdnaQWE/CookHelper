@@ -22,9 +22,11 @@ public class Recette {
 
     private void constructeur (int id, String nom, String categorie, String typeDePlat, int tempsDeCuisson, int portions, boolean favoris, int image, String description)
     {
+        this.id = id;
         this.nom = nom;
         this.categorie = categorie;
         this.typeDePlat = typeDePlat;
+        this.tempsDeCuisson = tempsDeCuisson;
         this.image = image;
         this.portions = portions;
         this.favoris = favoris;
