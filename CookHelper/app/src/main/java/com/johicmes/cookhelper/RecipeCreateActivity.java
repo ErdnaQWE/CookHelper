@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Daviiiiid on 2016-12-06.
  */
 public class RecipeCreateActivity extends AppCompatActivity {
-
+/
     private EditText idText, nomText, tempsDeCuissonText, portionsText, descriptionText;
     private EditText[] etapesText;//pourrait être autre chose qu'un array
     private EditText categorieText,typeDePlatText;//devrait être des comboBox/spinner
@@ -89,7 +89,7 @@ public class RecipeCreateActivity extends AppCompatActivity {
         {
             ingredients.add(i);
         }
-        ingredientView.setAdapter(new EtapeAdapter(this,ingredients));
+        ingredientView.setAdapter(new IngredientAdapter(this,ingredients));
     }
 
 

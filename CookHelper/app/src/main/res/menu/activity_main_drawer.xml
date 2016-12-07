@@ -28,6 +28,10 @@
             android:id="@+id/nav_Favoris"
             android:icon="@drawable/ic_action_heart"
             android:title="Favoris" />
+        <item
+            android:id="@+id/nav_AllRecipe"
+            android:icon="@drawable/ic_list"
+            android:title="Afficher toutes les recettes" />
     </group>
 
 </menu>

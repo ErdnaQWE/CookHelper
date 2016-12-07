@@ -7,8 +7,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.johicmes.cookhelper.RecipeView">
 
-    <include layout="@layout/content_recipe_view" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/likeActionButton"
         android:layout_width="wrap_content"
@@ -46,6 +44,8 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_recipe_view" />
 
 
 </android.support.design.widget.CoordinatorLayout>
