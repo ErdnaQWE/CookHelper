@@ -39,7 +39,7 @@ public class LeListnerQuiListenTout implements View.OnClickListener
             }
             case R.id.search:
             {
-                //faire le search
+                ListeBruteDeRecette listeBruteDeRecette = new ListeBruteDeRecette();
             }
         }
     }

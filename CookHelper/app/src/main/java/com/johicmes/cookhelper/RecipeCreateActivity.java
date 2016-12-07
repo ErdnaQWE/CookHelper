@@ -20,7 +20,8 @@ public class RecipeCreateActivity extends AppCompatActivity {
 
     private EditText idText, nomText, tempsDeCuissonText, portionsText, descriptionText;
     private EditText[] etapesText;//pourrait être autre chose qu'un array
-    private Spinner categorieText,typeDePlatText;
+    private Spinner categorieText,typeDePlatText;R.id.search
+    private ListView etapeView, ingredientView;
 
 
     @Override
@@ -73,50 +74,23 @@ public class RecipeCreateActivity extends AppCompatActivity {
         //categorieText.setText(recette.getCategorie());
         //typeDePlatText.setText(recette.getTypeDePlat());
 
-        /*
-        //affiche les etapes
-        int sizeEtapes = recette.getEtapes().length;
-        etapesText = new EditText[sizeEtapes];// on doit créer les étapes dynamiquement
-        //todo créer ces EditText dynamiquement, demande a Johic a propos des adapters qu'il a fait pour étapes et ingrédients ca pourrait te faciliter la tâche
-        for (int i=0;i<sizeEtapes;i++) {
-
-            etapesText[i] = (EditText) findViewById(R.id.step[i]);//ce id est invalide, tu dois créer les EditText dynamiquement comme dans l'exemple en haut
-            etapesText[i].setText(recette.getEtapes()[i]);//cette ligne marche
-        }
-        */
-
         List<String> etapes = new ArrayList<String>();
         for (String s : recette.getEtapes())
         {
             etapes.add(s);
         }
-
-        ListView etapeView = (ListView) findViewById(R.id.addSteps);
+        etapeView = (ListView) findViewById(R.id.addSteps);
         etapeView.setAdapter(new EtapeAdapter(this,etapes));
 
-        //affiche les ingredients
-        int sizeIngredients = recette.getIngredients().length;
-        //demande a Johic c'est quoi qu'il a fait pour ingrédient, il a fait un xml pour les ingrédients et je crois que tu peux les ajouter comme dans lab 6
-        //tu peux checker les powerpoints de ce lab quand tu comprends c'est assez simple, le adapter est déjà fait
-        EditText[] ingredientsText = new EditText[sizeIngredients];
-        EditText[] quantiteText = new EditText[sizeIngredients];
-        Switch[] switchToggle = new Switch[sizeIngredients];
 
-        ListView listView2 = (ListView) findViewById(R.id.addSteps);
 
-        for (int i=0;i<sizeIngredients;i++){
-            //set ingredients
-            ingredientsText[i] = (EditText) findViewById(R.id.ingredient[i]);//ce id est invalide
-            ingredientsText[i].setText(recette.getIngredients()[i].getNom());
-
-            //set quantites
-            quantiteText[i] = (EditText) findViewById(R.id.quantite[i]);
-            quantiteText[i].setText(new Double(recette.getIngredients()[i].getQuantite()).toString());
-
-            //set optionnels
-            switchToggle[i] = (Switch) findViewById(R.id.switch[i]);
-            switchToggle[i].toggle();
+        List<Ingredient> ingredients = new ArrayList<Ingredient>();
+        for (Ingredient i : recette.getIngredients())
+        {
+            ingredients.add(i);
         }
+        ingredientView = (ListView) findViewById(R.id.addIngredients);
+        ingredientView.setAdapter(new EtapeAdapter(this,ingredients));
     }
 
 
