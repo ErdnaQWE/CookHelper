@@ -76,11 +76,6 @@ public class RecipeBuilder{
         EditText idToKeep =(EditText) v.findViewById(R.id.IdPlaceHolder);
         idToKeep.setText(id);
 
-
-
-
-
-
     }
 
 

@@ -5,9 +5,13 @@ import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Daviiiiid on 2016-12-06.
@@ -56,9 +60,6 @@ public class RecipeCreateActivity extends AppCompatActivity {
         tempsDeCuissonText=(EditText) findViewById(R.id.tempsPrep);
         portionsText=(EditText) findViewById(R.id.portions);
         descriptionText = (EditText) findViewById(R.id.infoAdd);
-        //todo mettre les bon id pour les spinners
-        categorieText = (Spinner) findViewById(0); //tu avais oublié d'ajouter
-        typeDePlatText = (Spinner) findViewById(0);
     }
 
     public void ChargerRecette(Recette recette)
@@ -72,7 +73,7 @@ public class RecipeCreateActivity extends AppCompatActivity {
         //categorieText.setText(recette.getCategorie());
         //typeDePlatText.setText(recette.getTypeDePlat());
 
-
+        /*
         //affiche les etapes
         int sizeEtapes = recette.getEtapes().length;
         etapesText = new EditText[sizeEtapes];// on doit créer les étapes dynamiquement
@@ -82,6 +83,16 @@ public class RecipeCreateActivity extends AppCompatActivity {
             etapesText[i] = (EditText) findViewById(R.id.step[i]);//ce id est invalide, tu dois créer les EditText dynamiquement comme dans l'exemple en haut
             etapesText[i].setText(recette.getEtapes()[i]);//cette ligne marche
         }
+        */
+
+        List<String> etapes = new ArrayList<String>();
+        for (String s : recette.getEtapes())
+        {
+            etapes.add(s);
+        }
+
+        ListView etapeView = (ListView) findViewById(R.id.addSteps);
+        etapeView.setAdapter(new EtapeAdapter(this,etapes));
 
         //affiche les ingredients
         int sizeIngredients = recette.getIngredients().length;
@@ -90,6 +101,8 @@ public class RecipeCreateActivity extends AppCompatActivity {
         EditText[] ingredientsText = new EditText[sizeIngredients];
         EditText[] quantiteText = new EditText[sizeIngredients];
         Switch[] switchToggle = new Switch[sizeIngredients];
+
+        ListView listView2 = (ListView) findViewById(R.id.addSteps);
 
         for (int i=0;i<sizeIngredients;i++){
             //set ingredients
