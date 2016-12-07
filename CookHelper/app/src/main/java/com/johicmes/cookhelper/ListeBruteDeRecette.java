@@ -15,18 +15,21 @@ import java.util.LinkedList;
  * Created by Daviiiiid on 2016-12-01.
  */
 public class ListeBruteDeRecette {
-    private String FICHIER_A_LIRE = "recetteDatabase.txt";
-    private String FICHIER_NEXTID = "recetteDatabaseNext.txt";
+    private String FICHIER_A_LIRE = "recetteDatabase.txt"; //Le fichier brute contenant la base de données
+    private String FICHIER_NEXTID = "recetteDatabaseNext.txt"; //Le fichier contenant le prochain ID disponible
 
     //associations
     ListeDeRecette listeDeRecette;
-    VignetteDeRecherche[] vignetteDeRecherches; //on peut utiliser autre chose qu'un tableau ici
+    VignetteDeRecherche[] vignetteDeRecherches;
 
     private Context context;
-    private int nextId = 0;
+    private int nextId = 0; //Prochain identifiant disponible
 
-    private enum searchModifier {ET,OU,NON};
+    private enum searchModifier {ET,OU,NON}; //Les types d'elements de recherche disponibles
 
+    /*
+        Une entrée de recherche
+     */
     private class SearchEntry {
 
         public final String[] values;
@@ -42,14 +45,14 @@ public class ListeBruteDeRecette {
 
         SearchEntry(String[] values, searchModifier modifier) {
 
-            this.values = values.clone(); // Copies the values to avoid errors later on
+            this.values = values.clone(); // On copie les valeurs afin d'eviter les erreurs plus tard
             this.modifier = modifier;
         }
 
         public boolean matches(String input) {
 
             for (int i = 0; i < values.length; i++) {
-                if (values[i].equals(input)) {
+                if (values[i].toLowerCase().equals(input)) {
                     return true;
                 }
             }
@@ -94,23 +97,25 @@ public class ListeBruteDeRecette {
 
             while (workingLine != null){
 
-                if (workingLine.charAt(0) == '#') {
-                    if (workingLine.substring(2).equals(Integer.toString(id))) { // Trouvé!!
-                        String nom = reader.readLine();
-                        String categorie = reader.readLine();
-                        String typeDePlat = reader.readLine();
+                if (workingLine.length() > 0) {
+                    if (workingLine.charAt(0) == '#') {
+                        if (workingLine.substring(2).equals(Integer.toString(id))) { // Trouvé!!
+                            String nom = reader.readLine();
+                            String categorie = reader.readLine();
+                            String typeDePlat = reader.readLine();
 
-                        for (int i = 0; i < 5; i++) {
-                            reader.readLine();
+                            for (int i = 0; i < 5; i++) {
+                                reader.readLine();
+                            }
+
+                            inputStreamReader.close();
+                            return new VignetteDeRecherche(Integer.parseInt(workingLine.substring(2)), nom, categorie, typeDePlat, -1, Integer.parseInt(reader.readLine().substring(2)));
+
                         }
-
-                        inputStreamReader.close();
-                        return new VignetteDeRecherche(Integer.parseInt(workingLine.substring(2)), nom, categorie, typeDePlat, -1, Integer.parseInt(reader.readLine().substring(2)));
-
                     }
+
                 }
-
-
+                workingLine = reader.readLine();
             }
 
             inputStreamReader.close();
@@ -151,45 +156,47 @@ public class ListeBruteDeRecette {
             BufferedReader reader = new BufferedReader(inputStreamReader);
 
 
-            String workingLine = reader.readLine();
-            String[] workingIngredient;
-            int workingId = -2;
-            int currentPertinence = 0;
+            String workingLine = reader.readLine(); // La ligne en cours de lecture
+            String[] workingIngredient; // L'ingrédient en cours de traitement
+            int workingId; // Le ID de la recette trouvée
+            int currentPertinence = 0; // La pertinence actuelle de la recette trouvée
 
             while (workingLine != null) {
 
-                if (workingLine.charAt(1) == '#') { //Début d'une nouvelle recette
-                    workingId = Integer.parseInt(workingLine.substring(2));
+                if (workingLine.length() > 0) { // Vérifie si la ligne est vide
+                    if (workingLine.charAt(0) == '#') { // Début d'une nouvelle recette (en concordance avec le modèle)
+                        workingId = Integer.parseInt(workingLine.substring(2));
 
-                    for (int i = 0; i < 8; i++) { // Saute aux ingrédients (8 lignes plus bas en concordance avec le modèle)
-                        reader.readLine();
-                    }
-
-                    currentPertinence = 0;
-
-                    while (true) {
-                        workingLine = reader.readLine();
-
-                        if (workingLine.charAt(1) == '%') {
-                            break;
+                        for (int i = 0; i < 8; i++) { // Saute aux ingrédients (8 lignes plus bas en concordance avec le modèle)
+                            reader.readLine();
                         }
-                        workingIngredient = workingLine.split(" | ");
 
-                        for (int ii = 0; ii < entries.length; ii++) {
-                            if (entries[ii].matches(workingIngredient[0].toLowerCase())) {
-                                currentPertinence += 1;
+                        currentPertinence = 0;
+
+                        while (true) {
+                            workingLine = reader.readLine();
+
+                            if (workingLine.charAt(0) == '%') { // Il ne reste plus d'ingrédients
+                                break;
+                            }
+                            workingIngredient = workingLine.split(" | "); // On sépare les éléments d'un ingrédient
+
+                            for (int ii = 0; ii < entries.length; ii++) {
+                                if (entries[ii].matches(workingIngredient[0].toLowerCase())) {
+                                    currentPertinence += 1;
+                                }
                             }
                         }
+
+                        if (currentPertinence > 0) { // On construit la vignette
+                            resultat.add(construireVignette(workingId));
+                            resultat.getLast().setPertinence(currentPertinence);
+                        }
+
                     }
 
-                    if (currentPertinence > 0) { // On construit la vignette
-                        resultat.add(construireVignette(workingId));
-                    }
-
+                    workingLine = reader.readLine();
                 }
-
-                workingLine = reader.readLine();
-
             }
 
             inputStreamReader.close();
@@ -198,7 +205,7 @@ public class ListeBruteDeRecette {
             e.printStackTrace();
         }
 
-        return null;
+        return resultat.toArray(new VignetteDeRecherche[resultat.size()]);
     }
 
     public SearchEntry[] separerTermes(String input)

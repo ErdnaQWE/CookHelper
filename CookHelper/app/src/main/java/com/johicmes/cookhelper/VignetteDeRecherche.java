@@ -77,6 +77,10 @@ public class VignetteDeRecherche {
         return numIngredient;
     }
 
+    public void setPertinence(int pertinence) {
+        this.pertinence = pertinence;
+    }
+
     //getters pour VignetteAdapter
     public String getCategorieEtTypeDePlat()
     {
