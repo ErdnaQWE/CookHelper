@@ -61,6 +61,8 @@ public class RecipeCreateActivity extends AppCompatActivity {
         tempsDeCuissonText=(EditText) findViewById(R.id.tempsPrep);
         portionsText=(EditText) findViewById(R.id.portions);
         descriptionText = (EditText) findViewById(R.id.infoAdd);
+        etapeView = (ListView) findViewById(R.id.addSteps);
+        ingredientView = (ListView) findViewById(R.id.addIngredients);
     }
 
     public void ChargerRecette(Recette recette)
@@ -79,7 +81,6 @@ public class RecipeCreateActivity extends AppCompatActivity {
         {
             etapes.add(s);
         }
-        etapeView = (ListView) findViewById(R.id.addSteps);
         etapeView.setAdapter(new EtapeAdapter(this,etapes));
 
 
@@ -89,7 +90,6 @@ public class RecipeCreateActivity extends AppCompatActivity {
         {
             ingredients.add(i);
         }
-        ingredientView = (ListView) findViewById(R.id.addIngredients);
         ingredientView.setAdapter(new EtapeAdapter(this,ingredients));
     }
 
