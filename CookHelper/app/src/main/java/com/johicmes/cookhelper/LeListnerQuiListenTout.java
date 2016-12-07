@@ -10,6 +10,8 @@ import android.widget.ListView;
 
 import com.johicmes.cookhelper.R;
 
+import java.io.IOException;
+
 /**
  * Created by Daviiiiid on 2016-12-06.
  */
@@ -21,6 +23,7 @@ public class LeListnerQuiListenTout implements View.OnClickListener
     {
         switch (v.findViewById(v.getId()).getId())
         {
+            /*   Voir plus bas
             case R.id.buttonDone:
             {
                 ListView viewIngredients = (ListView) v.findViewById(R.id.addIngredients);
@@ -33,13 +36,21 @@ public class LeListnerQuiListenTout implements View.OnClickListener
                 build.compilerRecette(j, i);
 
             }
+            */
             case R.id.buttonEdit:
             {
                 RecipeBuilder build = new RecipeBuilder();
             }
-            case R.id.search:
+            case R.id.search://je ne suis pas trop sûr de ce qu'il faut faire ici pour passer les paramètres
             {
-                ListeBruteDeRecette listeBruteDeRecette = new ListeBruteDeRecette();
+                try
+                {
+                    ListeBruteDeRecette listeBruteDeRecette = new ListeBruteDeRecette(v.getContext());
+                }
+                catch(IOException e)
+                {
+                    e.printStackTrace();
+                }
             }
             case R.id.addIngredients:
             {//ajouter un nouvel ingréeient
