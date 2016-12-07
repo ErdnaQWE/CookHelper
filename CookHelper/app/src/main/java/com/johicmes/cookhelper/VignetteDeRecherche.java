@@ -13,6 +13,7 @@ public class VignetteDeRecherche {
     //Ajoutés pour vignetteAdapter
     private int numIngredient;//nombre d'ingredients total
     private int pertinence;//nombre d'ingrédients concordant à la recherche
+    private Recette objetRecette;
 
     //associations
     ListeDeRecette listeDeRecette;
@@ -28,6 +29,7 @@ public class VignetteDeRecherche {
         this.image = image;
         this.numIngredient = numIngredient;
         this.pertinence = pertinence;
+        this.objetRecette = new Recette(); // TODO insert constructors or it's just gonna have no attributes like 0 ecerywhere
     }
     public VignetteDeRecherche(int id, String nom, String categorie, String typeDePlat, int image, int numIngredient, int pertinence)
     {

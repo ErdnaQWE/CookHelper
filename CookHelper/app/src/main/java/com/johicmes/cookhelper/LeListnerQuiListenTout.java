@@ -1,7 +1,12 @@
 package com.johicmes.cookhelper;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.ListViewCompat;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import com.johicmes.cookhelper.R;
 
@@ -21,6 +26,23 @@ public class LeListnerQuiListenTout implements View.OnClickListener
                 //code ici () genre this is what happens when you click on this...
                 break;
             }
+            case R.id.buttonDone:
+            {
+                ListView viewIngredients = (ListView) v.findViewById(R.id.addIngredients);
+                int i = viewIngredients.getAdapter().getCount();
+
+                ListView viewSteps = (ListView) v.findViewById(R.id.addSteps);
+                int j = viewSteps.getAdapter().getCount();
+
+                RecipeBuilder build = new RecipeBuilder();
+                build.compilerRecette(j, i);
+
+            }
+            case R.id.buttonEdit:
+            {
+                RecipeBuilder build = new RecipeBuilder();
+            }
+
         }
     }
 }

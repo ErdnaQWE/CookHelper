@@ -1,5 +1,6 @@
 package com.johicmes.cookhelper;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -9,7 +10,7 @@ import java.util.LinkedList;
 /**
  * Created by Daviiiiid on 2016-12-01.
  */
-public class RecipeBuilder {
+public class RecipeBuilder{
     private int id;
     private String nom;
     private String categorie;
@@ -58,6 +59,26 @@ public class RecipeBuilder {
         this.favoris=recette.getFavori();
         this.infoAdd = recette.getDescription();
 
+        //set le view avec les valeurs de la recette. reste à ajouter les ingrédients/steps et les spinners
+
+        EditText nomText = (EditText) v.findViewById(R.id.nomderecette);
+        nomText.setText(nom);
+
+        EditText tempsDeCuissonText=(EditText) v.findViewById(R.id.tempsPrep);
+        tempsDeCuissonText.setText(tempsDeCuisson);
+
+        EditText portionsText=(EditText) v.findViewById(R.id.portions);
+        portionsText.setText(portions);
+
+        EditText descriptionText=(EditText) v.findViewById(R.id.infoAdd);
+        descriptionText.setText(infoAdd);
+
+        EditText idToKeep =(EditText) v.findViewById(R.id.IdPlaceHolder);
+        idToKeep.setText(id);
+
+
+
+
 
 
     }
@@ -76,17 +97,17 @@ public class RecipeBuilder {
         int image=0;
         String infoAdd=null;
 
-        EditText idText=(EditText) v.findViewById(R.id.recetteId);
-        id= Integer.parseInt(idText.getText().toString());
-
-        EditText nomText = (EditText) v.findViewById(R.id.nomDeRecette);
+        EditText nomText = (EditText) v.findViewById(R.id.nomderecette);
         nom = nomText.getText().toString();
 
+        /* Are now spinners... to be updated
         EditText categorieText=(EditText) v.findViewById(R.id.categorie);
         categorie = categorieText.getText().toString();
 
         EditText typeDePlatText=(EditText) v.findViewById(R.id.typeDePlats);
         typeDePlat = typeDePlatText.getText().toString();
+        */
+
 
         EditText tempsDeCuissonText=(EditText) v.findViewById(R.id.tempsPrep);
         tempsDeCuisson = Integer.parseInt(tempsDeCuissonText.getText().toString());
@@ -94,20 +115,22 @@ public class RecipeBuilder {
         EditText portionsText=(EditText) v.findViewById(R.id.portions);
         portions = Integer.parseInt(portionsText.getText().toString());
 
-        EditText descriptionText=(EditText) v.findViewById(R.id.description);
+        EditText descriptionText=(EditText) v.findViewById(R.id.infoAdd);
         infoAdd = descriptionText.getText().toString();
 
+
+        /* needs to be changed pour prendre les parties de ouias
         //etapes
         //add etapes boutton doit incremeter nombreEtapes
         EditText[] etapesText = new EditText[nombreEtapes];
         for (int i=0;i<nombreEtapes;i++){
 
-            EditText etapesText[i] = (EditText) v.findViewById(R.id.step[i]);
+            EditText etapesText[i] = (EditText) v.findViewById(R.id.);
             etapes[i] = etapesText[i].getText().toString();
 
 
         }
-
+       */
         //ingredients
         //add ingredients boutton doit incrementer nombreIngredients
         EditText[] ingredientsText = new EditText[nombreIngredients];
@@ -116,16 +139,16 @@ public class RecipeBuilder {
         for (int i=0;i<nombreIngredients;i++){
 
             //set ingredients
-            ingredientsText[i] = (EditText) v.findViewById(R.id.ingredient[i]);
+            ingredientsText[i] = (EditText) v.findViewById(R.id.nomIngredient);
             ingredients[i].setNom(ingredientsText[i].getText().toString());
 
             //set quantites
-            quantiteText[i] = (EditText) v.findViewById(R.id.quantite[i]);
+            quantiteText[i] = (EditText) v.findViewById(R.id.Quantite);
             ingredients[i].setQuantite(Double.parseDouble(quantiteText[i].getText().toString()));
 
 
             //set optionnels
-            switchToggle[i] = (Switch) v.findViewById(R.id.switch[i]);
+            switchToggle[i] = (Switch) v.findViewById(R.id.switchOptionel);
             ingredients[i].setOptionnel(switchToggle[i].isChecked());
 
         }

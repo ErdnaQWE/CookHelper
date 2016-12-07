@@ -1,6 +1,7 @@
 package com.johicmes.cookhelper;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,57 @@ import java.util.List;
 /**
  * Created by Daviiiiid on 2016-12-01.
  */
-public class VignetteAdapter extends ArrayAdapter<VignetteDeRecherche> {
+public class VignetteAdapter extends RecyclerView.Adapter<VignetteAdapter.MyViewHolder> {
+    ArrayAdapter<VignetteDeRecherche> vignettes;
+    Context context;
+
+    public VignetteAdapter (Context context, ArrayAdapter<VignetteDeRecherche> vignettes){
+        this.context = context;
+        this.vignettes = vignettes;
+    }
+
+
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(context).inflate(R.layout.cardview, parent, false);
+        MyViewHolder rowView = new MyViewHolder(view);
+        return rowView;
+    }
+
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+
+        ImageView thumbnail = (ImageView) holder.itemView.findViewById(R.id.thumbnail);
+        TextView nomView = (TextView) holder.itemView.findViewById(R.id.textNom);
+        TextView categorietTypeDePlatView = (TextView) holder.itemView.findViewById(R.id.textCategorieEtType);
+        TextView fractionView = (TextView) holder.itemView.findViewById(R.id.texteElementContenue);
+
+        thumbnail.setImageResource();
+        nomView.setText();
+        categorietTypeDePlatView.setText();
+        fractionView.setText();
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return vignettes.getCount();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+        public MyViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
+
+
+
+
+    /*
+    Temporary Comment out ArrayAdapter<VignetteDeRecherche>
 
     public VignetteAdapter (Context context, List<VignetteDeRecherche> vignette)
     {
@@ -37,4 +88,9 @@ public class VignetteAdapter extends ArrayAdapter<VignetteDeRecherche> {
 
         return rowView;
     }
+
+    */
+
+
+
 }

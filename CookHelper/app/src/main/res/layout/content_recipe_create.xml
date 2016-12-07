@@ -168,6 +168,15 @@
             android:id="@+id/recetteId"
             android:textColor="@android:color/transparent" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Set ID"
+            android:ems="10"
+            android:id="@+id/IdPlaceHolder"
+            android:selectAllOnFocus="true" />
+
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

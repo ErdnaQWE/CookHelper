@@ -93,10 +93,13 @@
                 android:paddingTop="8dp"
                 android:layout_gravity="right|center">
 
-                <Space
+                <Button
+                    android:text="View"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9" />
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonViewFullRecipe"
+                    android:layout_weight="9"
+                    style="@style/Widget.AppCompat.Button.Borderless" />
 
                 <ImageView
                     android:layout_width="24dp"
