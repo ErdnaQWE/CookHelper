@@ -208,6 +208,51 @@ public class ListeBruteDeRecette {
         return resultat.toArray(new VignetteDeRecherche[resultat.size()]);
     }
 
+    public VignetteDeRecherche[] rechercheCategorieOuType(String input, Boolean typeDePlat) {
+
+        LinkedList<VignetteDeRecherche> resultat = new LinkedList<VignetteDeRecherche>();
+
+        try {
+            FileInputStream fileIn = context.openFileInput(FICHIER_A_LIRE);
+            InputStreamReader inputStreamReader= new InputStreamReader(fileIn);
+
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+
+
+            String workingLine = reader.readLine(); // La ligne en cours de lecture
+            String[] workingIngredient; // L'ingrédient en cours de traitement
+            int workingId; // Le ID de la recette trouvée
+            int currentPertinence = 0; // La pertinence actuelle de la recette trouvée
+
+            while (workingLine != null) {
+
+                if (workingLine.length() > 0) { // Vérifie si la ligne est vide
+                    if (workingLine.charAt(0) == '#') { // Début d'une nouvelle recette (en concordance avec le modèle)
+                        workingId = Integer.parseInt(workingLine.substring(2));
+
+                        reader.readLine(); // Saute une ligne pour pouvoir lire la categorie (en concordance avec le modèle)
+                        if (typeDePlat) reader.readLine(); // Saute une ligne pour pouvoir lire le type de plat (en concordance avec le modèle)
+                        workingLine = reader.readLine(); // La categorie ou le type de plat de la recette actuelle
+
+                        if (input.equals(workingLine))
+                            resultat.add(construireVignette(workingId));
+                    }
+
+                    workingLine = reader.readLine();
+                }
+            }
+
+            inputStreamReader.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return resultat.toArray(new VignetteDeRecherche[resultat.size()]);
+    }
+
+
+
     public SearchEntry[] separerTermes(String input)
     {
 
