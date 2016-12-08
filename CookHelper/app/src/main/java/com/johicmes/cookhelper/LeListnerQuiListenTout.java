@@ -17,26 +17,11 @@ import java.io.IOException;
  */
 public class LeListnerQuiListenTout implements View.OnClickListener
 {
-    //si tu veux accéder à quelquechose de dynamique ou accéder aux méthodes du view utilise v.
 
     public void onClick(View v)
     {
         switch (v.findViewById(v.getId()).getId())
         {
-            /*   Voir plus bas
-            case R.id.buttonDone:
-            {
-                ListView viewIngredients = (ListView) v.findViewById(R.id.addIngredients);
-                int i = viewIngredients.getAdapter().getCount();
-
-                ListView viewSteps = (ListView) v.findViewById(R.id.addSteps);
-                int j = viewSteps.getAdapter().getCount();
-
-                RecipeBuilder build = new RecipeBuilder();
-                build.compilerRecette(j, i);
-
-            }
-            */
             case R.id.buttonEdit:
             {
                 RecipeBuilder build = new RecipeBuilder();
@@ -53,12 +38,12 @@ public class LeListnerQuiListenTout implements View.OnClickListener
                 }
             }
             case R.id.addIngredients:
-            {//ajouter un nouvel ingréeient
+            {//ajouter un nouvel ingrédient (RecipeBuilder)
                 ((IngredientAdapter)((ListView)v).getAdapter()).add(new Ingredient("",0f,"",false));
                 ((IngredientAdapter)((ListView)v).getAdapter()).notifyDataSetChanged();
             }
             case R.id.addSteps:
-            {
+            {//ajouter une étape (RecipeBuilder)
                 ((EtapeAdapter)((ListView)v).getAdapter()).add("");
                 ((EtapeAdapter)((ListView)v).getAdapter()).notifyDataSetChanged();
             }
