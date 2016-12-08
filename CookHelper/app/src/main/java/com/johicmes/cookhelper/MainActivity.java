@@ -56,8 +56,6 @@ public class MainActivity extends AppCompatActivity
 
         l = new LeListnerQuiListenTout();
 
-        searchButton = (Button) findviewById(R.id.search);// ce cast vas retourner une erreur je crois
-        searchButton.setOnClickListener(l);
     }
 
     @Override

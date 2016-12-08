@@ -40,10 +40,12 @@ public class VignetteAdapter extends RecyclerView.Adapter<VignetteAdapter.MyView
         TextView categorietTypeDePlatView = (TextView) holder.itemView.findViewById(R.id.textCategorieEtType);
         TextView fractionView = (TextView) holder.itemView.findViewById(R.id.texteElementContenue);
 
+        /* Must be implemented!
         thumbnail.setImageResource(getItem(position).getImage());
         nomView.setText(getItem(position).getNom());
         categorietTypeDePlatView.setText(getItem(position).getCategorieEtTypeDePlat());
         fractionView.setText(getItem(position).getFraction());
+        */
 
 
     }

@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Daviiiiid on 2016-12-06.
  */
 public class RecipeCreateActivity extends AppCompatActivity {
-/
+
     private EditText idText, nomText, tempsDeCuissonText, portionsText, descriptionText;
     private EditText[] etapesText;//pourrait être autre chose qu'un array
     private EditText categorieText,typeDePlatText;//devrait être des comboBox/spinner
@@ -34,10 +34,10 @@ public class RecipeCreateActivity extends AppCompatActivity {
 
         l = new LeListnerQuiListenTout();
 
-        idText = (EditText) findViewById(R.id.recetteId);
+        //idText = (EditText) findViewById(R.id.recetteId); // commented out needs to be fixed. easy fix.
         nomText = (EditText) findViewById(R.id.nomderecette);//I guess que c'est pas les bons id ici
-        categorieText=(EditText) findViewById(R.id.categorieSpinner);
-        typeDePlatText=(EditText) findViewById(R.id.TypeDePlatSpinner);
+        categorieText=(EditText) findViewById(R.id.textCategorie);
+        typeDePlatText=(EditText) findViewById(R.id.textType);
         tempsDeCuissonText=(EditText) findViewById(R.id.tempsPrep);
         portionsText=(EditText) findViewById(R.id.portions);
         descriptionText = (EditText) findViewById(R.id.infoAdd);
